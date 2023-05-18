@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  min-height: 10%;
+  width: 100%;
+  padding: 1em;
+  background-color: var(--bgcolor-secondary);
+}
+
+.item {
+  padding: .2em;
+  gap: .5em;
+  display: flex;
+  align-items: center;
+}

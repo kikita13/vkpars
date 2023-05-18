@@ -1,10 +1,11 @@
 import React from 'react';
 
-const index = () => {
+const not = () => {
   return (
     <div className='container'>
+      This page is not found (code 404)
     </div>
   );
 };
 
-export default index;
+export default not;
