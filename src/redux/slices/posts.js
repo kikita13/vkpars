@@ -5,35 +5,61 @@ import $ from "jquery";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return new Promise((resolve, reject) => {
-    const code = `var posts = API.wall.get({"owner_id": 1, "count": 100, "extended":'1', "fields":'${FIELDS.user}'}); return posts;`;
+    const code = `
+      var offset = 0;
+      var count = 200;
+      var allPosts;
+      var profiles = [];
+      var items = [];
+      var groups = [];
+      while (offset < count) {
+        var response = API.wall.get({
+          "owner_id": 1,
+          "count": 100,
+          "offset": offset,
+          "extended": '1',
+          "fields": '${FIELDS.user}'
+        });
+        
+        items = items + response.items;
+        profiles = profiles + response.profiles;
+        groups = groups + response.groups;
+        allPosts = response.count;
+        offset = offset + 100;
+      }
+      
+      return {
+        count: allPosts,
+        items: items,
+        profiles: profiles,
+        groups: groups
+      };
+    `;
+
     $.ajax({
-      url: `https://api.vk.com/method/execute?`,
+      url: "https://api.vk.com/method/execute?",
       data: {
         code,
         access_token: TOKEN,
-        v: '5.131'
+        v: "5.131",
       },
       dataType: "jsonp",
       method: "GET",
       success: (data) => {
         resolve(data.response);
-          const response = data.response
-          const allPosts = response.count
-          const profiles = response.profiles
-          const items = response.items
-          const groups = response.groups
       },
       error: (error) => {
         reject(new Error(error.message));
-      }
+      },
     });
   });
 });
 
+
 const initialState = {
   posts: [],
   status: "",
-  error: ""
+  error: "",
 };
 
 const posts = createSlice({
@@ -52,7 +78,7 @@ const posts = createSlice({
       state.status = "error";
       state.error = action.error.message;
     });
-  }
+  },
 });
 
 export const {} = posts.actions;
