@@ -1,0 +1,20 @@
+.container {
+  margin-top: .5em;
+}
+
+.attachments {
+  margin-top: .5em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4em;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+.attachment {
+  border-radius: .5rem;
+  max-height: 150px;
+  max-width: 100%;
+  object-fit: contain;
+}
