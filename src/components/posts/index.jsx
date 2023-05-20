@@ -11,10 +11,7 @@ const Index = () => {
   const [city, setCity] = useState("");
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch()
-  const handleClick = (props) => {
-    dispatch(fetchPosts(props))
-  }
-
+  const handleClick = (props) => dispatch(fetchPosts(props))
 
   return (
     <div className={styles.container}>
