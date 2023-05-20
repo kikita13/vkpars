@@ -3,18 +3,19 @@ import { TOKEN } from "@consts/token";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import $ from "jquery";
 
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => {
+  const {id, maxPosts} = props
   return new Promise((resolve, reject) => {
     const code = `
       var offset = 0;
-      var count = 200;
+      var count = '${maxPosts}';
       var allPosts;
       var profiles = [];
       var items = [];
       var groups = [];
       while (offset < count) {
         var response = API.wall.get({
-          "owner_id": 1,
+          "owner_id": '${id}',
           "count": 100,
           "offset": offset,
           "extended": '1',

@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+#__next {
+  display: flex;
+  height: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -20,12 +25,13 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
+
 .container {
   background-color: var(--bgcolor-primary);
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  flex-grow: 1;
 }
 
 body {
@@ -46,5 +52,3 @@ body {
   --icons-text-color: #939393;
   --active-color: #66fcf1;
 }
-
-

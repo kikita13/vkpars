@@ -1,0 +1,12 @@
+.button {
+  border: 1px solid var(--border-cards-color);
+  width: fit-content;
+  padding: .8em;
+  transition: .3s ease;
+  border-radius: 1em;
+}
+
+.button:hover {
+  border: 1px solid var(--active-color);
+  cursor: pointer;
+}

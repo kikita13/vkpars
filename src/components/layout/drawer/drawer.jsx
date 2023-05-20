@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { NAVDRAWER } from '@consts/images';
 import { useState } from 'react';
 
-const Drawer = () => {
+const Drawer = ( ) => {
   const [isOpen, setIsOpen] = useState(false)
-
+  
   return (
     <div className={styles.container}><img onClick={() => setIsOpen(!isOpen)} className={styles.icon} src={NAVDRAWER}/>
       <div className={isOpen ? `${styles.drawer} ${styles.active}`: styles.drawer}>

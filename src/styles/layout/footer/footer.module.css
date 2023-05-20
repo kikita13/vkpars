@@ -1,10 +1,14 @@
 .container {
   display: flex;
   justify-content: space-evenly;
-  min-height: 10%;
+  height: 55px;
   width: 100%;
   padding: 1em;
   background-color: var(--bgcolor-secondary);
+}
+
+.icon {
+  height: 100%;
 }
 
 .item {

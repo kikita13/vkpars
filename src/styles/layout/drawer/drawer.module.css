@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  min-height: 10%;
+  height: 55px;
   width: 100%;
   background-color: var(--bgcolor-secondary);
   display: flex;
@@ -17,7 +17,7 @@
   flex-direction: column;
   position: absolute;
   top: 100%;
-  border: 1px solid var(--border-cards-color);
+  background-color: #1c1c1c;
   left: 0;
   padding: 1em;
   border-radius: 0 1em 1em 0;

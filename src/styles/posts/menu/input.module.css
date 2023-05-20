@@ -1,0 +1,12 @@
+.input {
+  border: 1px solid var(--border-cards-color);
+  border-radius: 1em;
+  height: 2em;
+  background-color: var(--bgcolor-secondary);
+  padding: 0 1em 0 1em;
+}
+
+.input:focus-visible{
+  outline: none;
+}
+
