@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Menu from "./menu/menu";
 import Posts from "./posts/posts";
 import styles from "@/styles/posts/index.module.css";
