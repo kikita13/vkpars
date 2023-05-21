@@ -5,6 +5,8 @@ import styles from "@/styles/posts/menu/menu.module.css";
 
 const Menu = (props) => {
   const { 
+    setAgeOver,
+    setAgeLess,
     setId,
     setCity, 
     setKeyword, 
@@ -23,6 +25,10 @@ const Menu = (props) => {
         setValue={setCity} text="city" />
       <Input
         setValue={setKeyword} text="keyword" />
+        <Input
+        setValue={setAgeOver} text="over age" /> 
+        <Input
+        setValue={setAgeLess} text="less than age" />
       <Button 
         handleClick={handleClick}
         id={id}  

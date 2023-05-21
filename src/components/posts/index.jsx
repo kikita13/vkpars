@@ -10,6 +10,8 @@ const Index = () => {
   const [maxPosts, setMaxPosts] = useState("100");
   const [city, setCity] = useState(undefined);
   const [keyword, setKeyword] = useState(undefined);
+  const [ageOver, setAgeOver] = useState(undefined);
+  const [ageLess, setAgeLess] = useState(undefined);
   const dispatch = useDispatch()
   const handleClick = (props) => dispatch(fetchPosts(props))
 
@@ -21,10 +23,14 @@ const Index = () => {
         setMaxPosts={setMaxPosts}
         setKeyword={setKeyword}
         handleClick={handleClick}
+        setAgeOver={setAgeOver}
+        setAgeLess={setAgeLess}
         id={id}
         maxPosts={maxPosts}
         />
       <Posts 
+        ageOver={ageOver}
+        ageLess={ageLess}
         city={city}
         keyword={keyword}
       />
