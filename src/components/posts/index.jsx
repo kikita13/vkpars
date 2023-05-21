@@ -8,8 +8,8 @@ import { fetchPosts } from "@redux/slices/posts";
 const Index = () => {
   const [id, setId] = useState("");
   const [maxPosts, setMaxPosts] = useState("100");
-  const [city, setCity] = useState("");
-  const [keyword, setKeyword] = useState("");
+  const [city, setCity] = useState(undefined);
+  const [keyword, setKeyword] = useState(undefined);
   const dispatch = useDispatch()
   const handleClick = (props) => dispatch(fetchPosts(props))
 
@@ -23,8 +23,11 @@ const Index = () => {
         handleClick={handleClick}
         id={id}
         maxPosts={maxPosts}
+        />
+      <Posts 
+        city={city}
+        keyword={keyword}
       />
-      <Posts />
     </div>
   );
 };

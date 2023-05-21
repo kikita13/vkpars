@@ -2,9 +2,9 @@ import styles from "@/styles/posts/posts/posts.module.css";
 import { useSelector } from "react-redux";
 import Post from "./post/post";
 
-const Posts = () => {
+const Posts = (props) => {
+  const {city, keyword} = props
   const posts = useSelector((state) => state.posts.posts);
-
   const info = posts?.items?.map((item) => {
     const owner =
       +item?.from_id < 0
@@ -34,11 +34,17 @@ const Posts = () => {
 
   return (
     <div className={styles.container}>
-      {info?.map((post, index) => (
-        <Post key={index} post={post} />
-      ))}
+      {info
+        ?.filter(post =>
+          keyword ? post.post.text.toLowerCase().includes(keyword.toLowerCase()) : true
+        )
+        ?.filter( post => city ? post.owner?.city?.title.toLowerCase() == city.toLowerCase() : true )
+        .map((post, index) => (
+          <Post key={index} post={post} />
+        ))}
     </div>
   );
+  
 };
 
 export default Posts;
