@@ -8,8 +8,8 @@ import { fetchPosts } from "@redux/slices/posts";
 const Index = () => {
   const [id, setId] = useState("");
   const [maxPosts, setMaxPosts] = useState("100");
-  const [city, setCity] = useState(undefined);
   const [keyword, setKeyword] = useState(undefined);
+  const [city, setCity] = useState(undefined);
   const [ageOver, setAgeOver] = useState(undefined);
   const [ageLess, setAgeLess] = useState(undefined);
   const dispatch = useDispatch()
@@ -20,12 +20,12 @@ const Index = () => {
       <Menu
         setId={setId}
         setCity={setCity}
-        setMaxPosts={setMaxPosts}
-        setKeyword={setKeyword}
-        handleClick={handleClick}
         setAgeOver={setAgeOver}
         setAgeLess={setAgeLess}
+        handleClick={handleClick}
         id={id}
+        setMaxPosts={setMaxPosts}
+        setKeyword={setKeyword}
         maxPosts={maxPosts}
         />
       <Posts 

@@ -1,3 +1,4 @@
+import Index from "@components/users";
 import React from "react";
 
 const index = () => {
@@ -5,7 +6,7 @@ const index = () => {
 
   return (
     <div className="container">
-
+<Index/>
     </div>
   )
 };

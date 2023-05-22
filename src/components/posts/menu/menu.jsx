@@ -18,22 +18,27 @@ const Menu = (props) => {
   return (
     <div className={styles.container}>
       <Input
-        setValue={setId} text="id user or club" />
+        setValue={setId} 
+        text="id user or club" />
       <Input
-        setValue={setMaxPosts} text="max posts count" />
+        setValue={setMaxPosts} 
+        text="max posts count" />
       <Input
-        setValue={setCity} text="city" />
+        setValue={setCity} 
+        text="city" />
       <Input
-        setValue={setKeyword} text="keyword" />
-        <Input
-        setValue={setAgeOver} text="over age" /> 
-        <Input
-        setValue={setAgeLess} text="less than age" />
+        setValue={setKeyword} 
+        text="keyword" />
+      <Input
+        setValue={setAgeOver} 
+        text="over age" /> 
+      <Input
+        setValue={setAgeLess} 
+        text="less than age" />
       <Button 
         handleClick={handleClick}
         id={id}  
-        maxPosts={maxPosts}
-      />
+        maxPosts={maxPosts} />
     </div>
   );
 };
