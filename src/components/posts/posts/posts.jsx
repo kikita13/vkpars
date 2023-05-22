@@ -37,8 +37,8 @@ const Posts = (props) => {
         ?.filter(post =>
           keyword ? post.post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
         ?.filter( post => city ? post.owner?.city?.title.toLowerCase() == city.toLowerCase() : true)
-        ?.filter( post => ageOver ? useAges(post.owner?.bdate) > ageOver : true )
-        ?.filter( post => ageLess ? useAges(post.owner?.bdate) < ageLess : true )
+        ?.filter( post => ageOver ? useAges(post.owner?.bdate) >= ageOver : true )
+        ?.filter( post => ageLess ? useAges(post.owner?.bdate) <= ageLess : true )
         .map((post, index) => (
           <Post key={index} post={post} />
         ))}
