@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: .8em;
+  position: relative;
+}
+
+.info {
+ flex-grow: 1;
+}
+ 
+.photo {
+  border-radius: 50%;
+  height: 40px;
+}
+
+.name {
+  color: var(--text-color-headers)
+}
+
+.date {
+  color: var(--text-color-secondary)
+}
+
+.online {
+  color: var(--active-color)
+}

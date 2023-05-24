@@ -11,7 +11,7 @@ export const fetchFriends = createAsyncThunk("friends/fetchFriends", async (prop
       "user_id": '${props}',
       "fields": '${FIELDS.friends}'
     });
-    return friends.items;
+    return friends;
   `;
 
   $.ajax({

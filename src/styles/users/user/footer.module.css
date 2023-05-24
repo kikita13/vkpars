@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3em;
+  border: 1px solid var(--border-cards-color);
+  width: 100%;
+  padding: .5em;
+  border-radius: 1em;
+  transition: .3s ease-in;
+  user-select: none;
+}
+
+.container:hover {
+  cursor: pointer;
+  border: 1px solid var(--active-color);
+}
+
+.text {
+  color: var(--text-color-secondary);
+}

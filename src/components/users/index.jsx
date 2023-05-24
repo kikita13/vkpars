@@ -13,10 +13,11 @@ const Index = () => {
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
   const [ageLess, setAgeLess] = useState(undefined);
+  const [sex, setSex] = useState(undefined);
   const dispatch = useDispatch()
   const handleClick = (props) => {
     const {id} = props
-    id > 0
+    id >= 0
     ? dispatch(fetchFriends(id))
     : dispatch()
   }
@@ -29,6 +30,7 @@ const Index = () => {
         setAgeLess={setAgeLess}
         setFirstName={setFirstName}
         setLastName={setLastName}
+        setSex={setSex}
         handleClick={handleClick}
         id={id}
       />
@@ -38,6 +40,7 @@ const Index = () => {
         ageOver={ageOver}
         ageLess={ageLess}
         city={city}
+        sex={sex}
       />
     </div>
   );

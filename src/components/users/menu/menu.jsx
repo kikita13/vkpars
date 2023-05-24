@@ -11,7 +11,8 @@ const Menu = (props) => {
     id,
     setFirstName,
     setLastName,
-    handleClick
+    handleClick,
+    setSex
   } = props;
 
   return (
@@ -19,6 +20,9 @@ const Menu = (props) => {
       <Input 
         text="id user or club" 
         setValue={setId} />
+      <Input 
+        text="sex" 
+        setValue={setSex} />
       <Input 
         text="first name" 
         setValue={setFirstName} />

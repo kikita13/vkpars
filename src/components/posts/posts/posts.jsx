@@ -34,8 +34,7 @@ const Posts = (props) => {
   return (
     <div className={styles.container}>
       {info
-        ?.filter(post =>
-          keyword ? post.post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
+        ?.filter( post => keyword ? post.post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
         ?.filter( post => city ? post.owner?.city?.title.toLowerCase() == city.toLowerCase() : true)
         ?.filter( post => ageOver ? useAges(post.owner?.bdate) >= ageOver : true )
         ?.filter( post => ageLess ? useAges(post.owner?.bdate) <= ageLess : true )
