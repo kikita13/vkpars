@@ -4,6 +4,7 @@ import Menu from './menu/menu';
 import Users from './users';
 import { useDispatch } from 'react-redux';
 import { fetchFriends } from '@redux/slices/friends';
+import { fetchMembers } from '@redux/slices/members';
 
 
 const Index = () => {
@@ -19,7 +20,7 @@ const Index = () => {
     const {id} = props
     id >= 0
     ? dispatch(fetchFriends(id))
-    : dispatch()
+    : dispatch(fetchMembers(Math.abs(+id)))
   }
   return (
     <div className={styles.container}>
