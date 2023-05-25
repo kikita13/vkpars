@@ -10,6 +10,20 @@
   padding: 1em;
 }
 
+.item:first-child div  {
+  font-size: 20px;
+}
+
+.item:first-child  {
+  border: none;
+}
+
+.item:first-child:hover {
+  border: none;
+}
+
+
+
 .item {
   border: 1px solid var(--border-cards-color);
   width: fit-content;

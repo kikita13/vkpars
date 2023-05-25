@@ -8,7 +8,7 @@ const Drawer = ( ) => {
   const [isOpen, setIsOpen] = useState(false)
   
   return (
-    <div className={styles.container}><img onClick={() => setIsOpen(!isOpen)} className={styles.icon} src={NAVDRAWER}/>
+    <div className={styles.container}><img onClick={() => setIsOpen(!isOpen)} className={styles.icon} src={NAVDRAWER}/><div className={styles.text}>VK Parser</div>
       <div className={isOpen ? `${styles.drawer} ${styles.active}`: styles.drawer}>
       {NAV.map((item) => (
         <Link onClick={() => setTimeout(() => {setIsOpen(false)},500)} key={item.id} href={item.path} className={styles.item}>

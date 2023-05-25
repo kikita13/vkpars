@@ -45,6 +45,15 @@
   transition: .3s ease;
 }
 
+.item:first-child {
+  display: none;
+}
+
+.text {
+  flex-grow: 1;
+  font-size: 20px;
+}
+
 .item:hover {
   border: 1px solid var(--active-color);
   cursor: pointer;

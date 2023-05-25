@@ -7,7 +7,7 @@ import Drawer from './drawer/drawer';
 const Layout = ( {children} ) => {
   return (
   <div className='container'>
-    {useResize() >=500 ? <Nav/> : <Drawer/>}
+    {useResize() >=650 ? <Nav/> : <Drawer/>}
     {children}    
     <Footer/>
   </div>
