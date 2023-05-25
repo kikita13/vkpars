@@ -4,58 +4,68 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import $ from "jquery";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => {
-  const {id, maxPosts} = props
-  return new Promise((resolve, reject) => {
-    const code = `
-      var offset = 0;
-      var count = '${maxPosts}';
-      var allPosts;
-      var profiles = [];
-      var items = [];
-      var groups = [];
-      while (offset < count) {
-        var response = API.wall.get({
-          "owner_id": '${id}',
-          "count": 100,
-          "offset": offset,
-          "extended": '1',
-          "fields": '${FIELDS.user}'
+  const { id, maxPosts } = props;
+  const number = maxPosts;
+  const interval = 100;
+  const chunkSize = 10;
+  const result = [];
+  const code = [];
+
+  for (let i = 0; i < number; i += chunkSize * interval) {
+    const chunk = [];
+    for (
+      let j = i;
+      j < i + chunkSize * interval && j <= number;
+      j += interval
+    ) {
+      chunk.push(
+        `var response = API.wall.get({"owner_id": '${id}',"count": 100,"offset": ${j},"extended": '1',"fields": '${FIELDS.user}'}); items = items + response.items; profiles = profiles + response.profiles; groups = groups + response.groups;`
+      );
+    }
+    result.push(chunk);
+  }
+
+  for (let i = 0; i < result.length; i++) {
+    code.push(result[i]);
+  }
+
+  const qwe = [];
+
+  for (let i = 0; i < Math.ceil(maxPosts / (interval * chunkSize)); i++) {
+    try {
+      const response = await new Promise((resolve, reject) => {
+        $.ajax({
+          url: "https://api.vk.com/method/execute?",
+          data: {
+            code: `var allPosts;var profiles = [];var items = [];var groups = []; ${code[i].join('')} return { count: response.count, items: items, profiles: profiles, groups: groups };`,
+            access_token: TOKEN,
+            v: "5.131",
+          },
+          dataType: "jsonp",
+          method: "GET",
+          success: (data) => {
+            resolve(data.response);
+          },
+          error: (error) => {
+            reject(new Error(error.message));
+          },
         });
-        
-        items = items + response.items;
-        profiles = profiles + response.profiles;
-        groups = groups + response.groups;
-        allPosts = response.count;
-        offset = offset + 100;
-      }
-      
-      return {
-        count: allPosts,
-        items: items,
-        profiles: profiles,
-        groups: groups
-      };
-    `;
+      });
 
-    $.ajax({
-      url: "https://api.vk.com/method/execute?",
-      data: {
-        code,
-        access_token: TOKEN,
-        v: "5.131",
-      },
-      dataType: "jsonp",
-      method: "GET",
-      success: (data) => {
-        resolve(data.response);
-      },
-      error: (error) => {
-        reject(new Error(error.message));
-      },
-    });
-  });
+      qwe.push(response);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+  const mergedObject = qwe.reduce((merged, current) => {
+    merged.count = current.count;
+    merged.profiles.push(...current.profiles);
+    merged.items.push(...current.items);
+    merged.groups.push(...current.groups);
+    return merged;
+  }, { count: 0, profiles: [], items: [], groups: [] });
+  return mergedObject;
 });
-
 
 const initialState = {
   posts: [],
