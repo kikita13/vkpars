@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Post from "./post/post";
 import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
-import { useScroll } from "@consts/hooks/scroll";
+// import { useScroll } from "@consts/hooks/scroll";
 
 const Posts = (props) => {
 
@@ -62,18 +62,18 @@ const Posts = (props) => {
     setCurrentPage(info.length);
   };
 
-  const scrollPosition = useScroll()
+  // const scrollPosition = useScroll()
 
   return (
     <div className={styles.container}>
       {displayedPosts?.map((post, index) => (
         <Post key={index} post={post} />
       ))}
-                  <div
+                  {/* <div
               className={scrollPosition >= 2000 ? `${styles.scroll} ${styles.scrollActive}`: styles.scroll}
               onClick={() => scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
               <img src={ARROWUP}/>
-            </div>  
+            </div>   */}
       {displayedPosts?.length < info?.length && (
         <div className={styles.buttons}>
           <div className={styles.button} onClick={() => loadNextPage()}>
