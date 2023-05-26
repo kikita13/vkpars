@@ -27,24 +27,28 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
 
   const qwe = [];
 
-  const executeRequests = code.map((chunk) => {
+  const executeRequests = code.map((chunk,index) => {
     return new Promise((resolve, reject) => {
-      $.ajax({
-        url: "https://api.vk.com/method/execute?",
-        data: {
-          code: `var allPosts;var profiles = [];var items = [];var groups = []; ${chunk.join('')} return { count: response.count, items: items, profiles: profiles, groups: groups };`,
-          access_token: TOKEN,
-          v: "5.131",
-        },
-        dataType: "jsonp",
-        method: "GET",
-        success: (data) => {
-          resolve(data.response);
-        },
-        error: (error) => {
-          reject(new Error(error.message));
-        },
-      });
+      setTimeout((e) => {
+
+        $.ajax({
+          url: "https://api.vk.com/method/execute?",
+          data: {
+            code: `var allPosts;var profiles = [];var items = [];var groups = []; ${chunk.join('')} return { count: response.count, items: items, profiles: profiles, groups: groups };`,
+            access_token: TOKEN,
+            v: "5.131",
+          },
+          dataType: "jsonp",
+          method: "GET",
+          success: (data) => {
+            resolve(data.response);
+            console.log(data);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+      }, index*1000/3)
     });
   });
 
