@@ -13,11 +13,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
 
   for (let i = 0; i < number; i += chunkSize * interval) {
     const chunk = [];
-    for (
-      let j = i;
-      j < i + chunkSize * interval && j <= number;
-      j += interval
-    ) {
+    for (let j = i; j < i + chunkSize * interval && j <= number; j += interval) {
       chunk.push(
         `var response = API.wall.get({"owner_id": '${id}',"count": 100,"offset": ${j},"extended": '1',"fields": '${FIELDS.user}'}); items = items + response.items; profiles = profiles + response.profiles; groups = groups + response.groups;`
       );
@@ -31,39 +27,44 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
 
   const qwe = [];
 
-  for (let i = 0; i < Math.ceil(maxPosts / (interval * chunkSize)); i++) {
-    try {
-      const response = await new Promise((resolve, reject) => {
-        $.ajax({
-          url: "https://api.vk.com/method/execute?",
-          data: {
-            code: `var allPosts;var profiles = [];var items = [];var groups = []; ${code[i].join('')} return { count: response.count, items: items, profiles: profiles, groups: groups };`,
-            access_token: TOKEN,
-            v: "5.131",
-          },
-          dataType: "jsonp",
-          method: "GET",
-          success: (data) => {
-            resolve(data.response);
-          },
-          error: (error) => {
-            reject(new Error(error.message));
-          },
-        });
+  const executeRequests = code.map((chunk) => {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: "https://api.vk.com/method/execute?",
+        data: {
+          code: `var allPosts;var profiles = [];var items = [];var groups = []; ${chunk.join('')} return { count: response.count, items: items, profiles: profiles, groups: groups };`,
+          access_token: TOKEN,
+          v: "5.131",
+        },
+        dataType: "jsonp",
+        method: "GET",
+        success: (data) => {
+          resolve(data.response);
+        },
+        error: (error) => {
+          reject(new Error(error.message));
+        },
       });
+    });
+  });
 
-      qwe.push(response);
-    } catch (error) {
-      throw new Error(error.message);
-    }
+  try {
+    const responses = await Promise.all(executeRequests);
+    qwe.push(...responses);
+  } catch (error) {
+    throw new Error(error.message);
   }
-  const mergedObject = qwe.reduce((merged, current) => {
-    merged.count = current.count;
-    merged.profiles.push(...current.profiles);
-    merged.items.push(...current.items);
-    merged.groups.push(...current.groups);
-    return merged;
-  }, { count: 0, profiles: [], items: [], groups: [] });
+
+  const mergedObject = qwe.reduce(
+    (merged, current) => {
+      merged.count = current.count;
+      merged.profiles.push(...current.profiles);
+      merged.items.push(...current.items);
+      merged.groups.push(...current.groups);
+      return merged;
+    },
+    { count: 0, profiles: [], items: [], groups: [] }
+  );
   return mergedObject;
 });
 
