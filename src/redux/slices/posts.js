@@ -29,7 +29,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
 
   const executeRequests = code.map((chunk,index) => {
     return new Promise((resolve, reject) => {
-      setTimeout((e) => {
+      setTimeout(() => {
 
         $.ajax({
           url: "https://api.vk.com/method/execute?",
@@ -42,7 +42,6 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
           method: "GET",
           success: (data) => {
             resolve(data.response);
-            console.log(data);
           },
           error: (error) => {
             console.log(error);

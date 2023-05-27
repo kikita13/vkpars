@@ -3,7 +3,7 @@ import styles from '@/styles/users/user/body.module.css'
 const Body = (props) => {
   
   const {user} = props
-  
+
   return (
     <div className={styles.container}>
       {user.id && (<div className={styles.item}>{`Id: ${user.id}`}</div>)}

@@ -8,4 +8,5 @@
 .item {
   color: var(--text-color-primary);
   font-size: 13px;
+  overflow-wrap: anywhere;
 }

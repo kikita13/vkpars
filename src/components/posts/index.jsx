@@ -4,8 +4,10 @@ import Posts from "./posts/posts";
 import styles from "@/styles/posts/index.module.css";
 import { useDispatch } from "react-redux";
 import { fetchPosts } from "@redux/slices/posts";
+import { fetchComments } from "@redux/slices/comments";
 
-const Index = () => {
+const Index = (props) => {
+  const {comments} = props
   const [id, setId] = useState("");
   const [maxPosts, setMaxPosts] = useState("100");
   const [keyword, setKeyword] = useState(undefined);
@@ -13,7 +15,7 @@ const Index = () => {
   const [ageOver, setAgeOver] = useState(undefined);
   const [ageLess, setAgeLess] = useState(undefined);
   const dispatch = useDispatch()
-  const handleClick = (props) => dispatch(fetchPosts(props))
+  const handleClick = (props) => !comments ? dispatch(fetchPosts(props)) : dispatch(fetchComments(props))
 
   return (
     <div className={styles.container}>

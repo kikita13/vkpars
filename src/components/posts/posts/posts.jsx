@@ -4,10 +4,9 @@ import { useSelector } from "react-redux";
 import Post from "./post/post";
 import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
-// import { useScroll } from "@consts/hooks/scroll";
+import { useScroll } from "@consts/hooks/scroll";
 
 const Posts = (props) => {
-
   const { city, keyword, ageOver, ageLess } = props;
 
   const posts = useSelector((state) => state.posts.posts);
@@ -43,16 +42,10 @@ const Posts = (props) => {
   });
 
   const displayedPosts = info
-    ?.filter((post) =>
-      keyword
-        ? post.post.text.toLowerCase().includes(keyword.toLowerCase())
-        : true
-    )
-    ?.filter((post) =>
-      city ? post.owner?.city?.title.toLowerCase() === city.toLowerCase() : true
-    )
-    ?.filter((post) => (ageOver ? useAges(post.owner?.bdate) >= ageOver : true))
-    ?.filter((post) => (ageLess ? useAges(post.owner?.bdate) <= ageLess : true))
+    ?.filter( post => keyword   ? post.post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
+    ?.filter( post => city      ? post.owner?.city?.title.toLowerCase() === city.toLowerCase() : true)
+    ?.filter( post => ageLess   ? useAges(post.owner?.bdate)            <= ageLess             : true)
+    ?.filter( post => ageOver   ? useAges(post.owner?.bdate)            >= ageOver             : true)
     .slice(0, currentPage * postsPerPage);
 
   const loadNextPage = () => {
@@ -62,18 +55,23 @@ const Posts = (props) => {
     setCurrentPage(info.length);
   };
 
-  // const scrollPosition = useScroll()
+  const scrollPosition = useScroll();
 
   return (
     <div className={styles.container}>
       {displayedPosts?.map((post, index) => (
         <Post key={index} post={post} />
       ))}
-                  {/* <div
-              className={scrollPosition >= 2000 ? `${styles.scroll} ${styles.scrollActive}`: styles.scroll}
-              onClick={() => scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
-              <img src={ARROWUP}/>
-            </div>   */}
+      <div
+        className={
+          scrollPosition >= 2000
+            ? `${styles.scroll} ${styles.scrollActive}`
+            : styles.scroll
+        }
+        onClick={() => scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+      >
+        <img src={ARROWUP} />
+      </div>
       {displayedPosts?.length < info?.length && (
         <div className={styles.buttons}>
           <div className={styles.button} onClick={() => loadNextPage()}>

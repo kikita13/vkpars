@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import User from "./user/user";
 import { useSex } from "@consts/hooks/sex";
 import { useAges } from "@consts/hooks/ages";
+import { ARROWUP } from "@consts/images";
+import { useScroll } from "@consts/hooks/scroll";
 
 const Users = (props) => {
 
   const {firstName, lastName, ageOver, ageLess, city, sex} = props
   const users = useSelector(state => state.friends.friends.length !== 0 ? state.friends.friends : state.members.members)
-
-  console.log(users);
-  
+  const scrollPosition = useScroll();
   return (
     <div className={styles.container}>
       {users?.items
@@ -23,6 +23,16 @@ const Users = (props) => {
       ?.map((user, index) => (
         <User key={index} user={user}/>
       ))}
+    <div
+      className={
+        scrollPosition >= 2000
+          ? `${styles.scroll} ${styles.scrollActive}`
+          : styles.scroll
+      }
+      onClick={() => scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+      >
+        <img src={ARROWUP} />
+      </div>
     </div>
   );
 };
