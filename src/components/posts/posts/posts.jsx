@@ -5,6 +5,7 @@ import Post from "./post/post";
 import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
 import { useScroll } from "@consts/hooks/scroll";
+import Account from "@components/account/account";
 
 const Posts = (props) => {
   
@@ -52,9 +53,10 @@ const Posts = (props) => {
 
 
   const scrollPosition = useScroll();
-
+  const account = posts.account
   return (
     <div className={styles.container}>
+      {account && <Account  account={account} countPosts={posts.count} />}  
       {displayedPosts?.map((post, index) => (
         <Post key={index} post={post} />
       ))}

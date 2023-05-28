@@ -7,17 +7,16 @@ import $ from 'jquery'
 export const fetchFriends = createAsyncThunk("friends/fetchFriends", async (props) => {
   return new Promise((resolve, reject) => {
   const code = `
-    var friends = API.friends.get({
+    var items = API.friends.get({
       "user_id": '${props}',
       "fields": '${FIELDS.friends}'
     });
-    return friends;
   `;
 
   $.ajax({
     url: "https://api.vk.com/method/execute?",
     data: {
-      code,
+      code: `var account; if (${props} < 0) {account = API.groups.getById({"group_id": '${-props}', "fields": '${FIELDS.group}'});} else {account = API.users.get({"user_ids": '${props}', "fields": '${FIELDS.user}'});}; ${code}; return {items: items, account: account};`,
       access_token: TOKEN,
       v: "5.131",
     },

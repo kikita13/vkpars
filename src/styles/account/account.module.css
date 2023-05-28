@@ -1,0 +1,37 @@
+.container {
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--bgcolor-secondary);
+  border-radius: 1em;
+  padding: 1em;
+  width: 50%;
+}
+
+.photo {
+  border-radius: 50%;
+  max-height: 52px;
+  max-width: 52px;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid var(--border-cards-color);
+  padding-bottom: .3em;
+}
+
+.counts {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.counts div {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

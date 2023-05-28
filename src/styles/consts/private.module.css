@@ -1,0 +1,33 @@
+.tooltip {
+  display: inline-block;
+  position: relative;
+}
+
+.tooltipText {
+  transform-origin: right;
+  transform: scaleX(0);
+  position: absolute;
+  content: '';
+  left: -760%;
+  top: -50%;
+  border-radius: 1em;
+  padding: 1em;
+  background-color: var(--border-cards-color);
+  transition: .2s ease-in;
+  opacity: 0;
+}
+
+.tooltipText::after {
+  position: absolute;
+  content: ' ';
+  left: 100%;
+  top: 40%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--border-cards-color);
+}
+
+.tooltip:hover  .tooltipText {
+  opacity: 1;
+  transform: scaleX(1);
+}

@@ -38,6 +38,14 @@ body {
   flex-direction: column;
 }
 
+.date {
+  color: var(--text-color-secondary)
+}
+
+.online {
+  color: var(--active-color)
+}
+
 :root {
   --bgcolor-primary: #141414;
   --bgcolor-secondary: #222222;

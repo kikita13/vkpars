@@ -34,7 +34,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
         $.ajax({
           url: "https://api.vk.com/method/execute?",
           data: {
-            code: `var allPosts;var profiles = [];var items = [];var groups = []; ${chunk.join('')} return { count: response.count, items: items, profiles: profiles, groups: groups };`,
+            code: `var account; if (${id} < 0) {account = API.groups.getById({"group_id": '${-id}', "fields": '${FIELDS.group}'});} else {account = API.users.get({"user_ids": '${id}', "fields": '${FIELDS.user}'});};var profiles = [];var items = [];var groups = []; ${chunk.join('')} return { count: response.count, items: items, profiles: profiles, groups: groups, account: account };`,
             access_token: TOKEN,
             v: "5.131",
           },
@@ -64,6 +64,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
       merged.profiles.push(...current.profiles);
       merged.items.push(...current.items);
       merged.groups.push(...current.groups);
+      merged.account   = current.account[0];
       return merged;
     },
     { count: 0, profiles: [], items: [], groups: [] }

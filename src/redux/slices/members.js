@@ -25,14 +25,12 @@ export const fetchMembers = createAsyncThunk("members/fetchMembers", async (prop
       offset = offset + count;
       items = items + members.items;
       };
-
-      return {items: items, count: length};
     `;
   
     $.ajax({
       url: "https://api.vk.com/method/execute?",
       data: {
-        code,
+        code: `var account; if (${props} < 0) {account = API.groups.getById({"group_id": '${-props}', "fields": '${FIELDS.group}'});} else {account = API.users.get({"user_ids": '${props}', "fields": '${FIELDS.user}'});}; ${code}; return {items: items, count: length, account: account};`,
         access_token: TOKEN,
         v: "5.131",
       },
