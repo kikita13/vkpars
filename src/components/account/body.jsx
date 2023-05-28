@@ -1,4 +1,4 @@
-import styles from '@/styles/userInfo/body.module.css';
+import styles from '@/styles/account/body.module.css';
 import Count from './count';
 import { useOnline } from '@consts/hooks/online';
 import { useSplitText } from '@consts/hooks/splitText';
