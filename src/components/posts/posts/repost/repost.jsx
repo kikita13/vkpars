@@ -4,6 +4,7 @@ import styles from '@/styles/posts/repost/repost.module.css'
 import Body from '../post/body';
 
 const Repost = (props) => {
+  
   const {post} = props
 
   return (

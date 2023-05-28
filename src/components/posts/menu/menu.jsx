@@ -4,6 +4,7 @@ import Button from "./button";
 import styles from "@/styles/posts/menu/menu.module.css";
 
 const Menu = (props) => {
+
   const { 
     setAgeOver,
     setAgeLess,
@@ -15,6 +16,7 @@ const Menu = (props) => {
     id,
     maxPosts
   } = props;
+  
   return (
     <div className={styles.container}>
       <Input

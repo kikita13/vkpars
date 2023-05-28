@@ -7,7 +7,9 @@ import { fetchPosts } from "@redux/slices/posts";
 import { fetchComments } from "@redux/slices/comments";
 
 const Index = (props) => {
+
   const {comments} = props
+  
   const [id, setId] = useState("");
   const [maxPosts, setMaxPosts] = useState("100");
   const [keyword, setKeyword] = useState(undefined);

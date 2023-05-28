@@ -7,12 +7,14 @@ import { ARROWUP } from "@consts/images";
 import { useScroll } from "@consts/hooks/scroll";
 
 const Posts = (props) => {
+  
   const { city, keyword, ageOver, ageLess } = props;
 
   const posts = useSelector((state) => state.posts.posts);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 100;
-
+  const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
+  const loadAllPage = () => setCurrentPage(info.length);
   const info = posts?.items?.map((item) => {
     const owner =
       +item?.from_id < 0
@@ -48,12 +50,6 @@ const Posts = (props) => {
     ?.filter( post => ageOver   ? useAges(post.owner?.bdate)            >= ageOver             : true)
     .slice(0, currentPage * postsPerPage);
 
-  const loadNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-  const loadAllPage = () => {
-    setCurrentPage(info.length);
-  };
 
   const scrollPosition = useScroll();
 

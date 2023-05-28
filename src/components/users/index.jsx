@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 import { fetchFriends } from '@redux/slices/friends';
 import { fetchMembers } from '@redux/slices/members';
 
-
 const Index = () => {
+
   const [id, setId] = useState("");
   const [city, setCity] = useState(undefined);
   const [ageOver, setAgeOver] = useState(undefined);
@@ -22,6 +22,7 @@ const Index = () => {
     ? dispatch(fetchFriends(id))
     : dispatch(fetchMembers(Math.abs(+id)))
   }
+  
   return (
     <div className={styles.container}>
       <Menu

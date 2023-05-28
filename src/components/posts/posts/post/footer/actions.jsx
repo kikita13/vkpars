@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Actions = (props) => {
+  
   const {styles, icon, text} = props
   
   return (

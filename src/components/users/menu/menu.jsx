@@ -3,6 +3,7 @@ import Button from "@components/posts/menu/button";
 import Input from "@components/posts/menu/input";
 
 const Menu = (props) => {
+  
   const {
     setAgeOver,
     setAgeLess,

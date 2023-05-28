@@ -1,7 +1,9 @@
 import styles from '@/styles/posts/menu/input.module.css'
 
 const Input = (props) => {
+
   const {text, setValue} = props
+  
   return (
     <input 
       type="text" 

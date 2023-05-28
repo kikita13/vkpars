@@ -2,6 +2,7 @@ import { usePage, usePost } from '@consts/hooks/link';
 import React from 'react';
 
 const Links = (props) => {
+  
   const {styles, icon, text, post} = props
   
   return (
