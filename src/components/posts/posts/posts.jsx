@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/posts/posts/posts.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Post from "./post/post";
 import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
 import { useScroll } from "@consts/hooks/scroll";
 import Account from "@components/account/account";
+import { fetchComment } from "@redux/slices/comment";
 
 const Posts = (props) => {
   
@@ -51,6 +52,12 @@ const Posts = (props) => {
     ?.filter( post => ageOver   ? useAges(post.owner?.bdate)            >= ageOver             : true)
     .slice(0, currentPage * postsPerPage);
 
+const dispatch = useDispatch()
+  const handleComment = (props) => {
+    dispatch(fetchComment(props))
+  }
+  
+  const comment = useSelector(state => state.comment.comment)
 
   const scrollPosition = useScroll();
   const account = posts.account
@@ -58,7 +65,7 @@ const Posts = (props) => {
     <div className={styles.container}>
       {account && <Account  account={account} countPosts={posts.count} />}  
       {displayedPosts?.map((post, index) => (
-        <Post key={index} post={post} />
+        <Post key={index} post={post} comment={comment} handleComment={handleComment}/>
       ))}
       <div
         className={

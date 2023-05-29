@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  color: var(--text-color-headers);
+}
+
+.online * {
+  font-size: 11px;
+}
+
+.online {
+  display: flex;
+}

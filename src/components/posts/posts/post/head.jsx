@@ -1,6 +1,6 @@
 import styles from "@/styles/posts/post/head.module.css";
 import { usePrivate } from "@consts/hooks/private";
-import { LOCK, PINNED, UNLOCK } from "@consts/images";
+import { PINNED } from "@consts/images";
 
 const Head = (props) => {
 

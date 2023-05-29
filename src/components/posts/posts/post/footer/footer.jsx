@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "@/styles/posts/post/footer.module.css";
 import Actions from "./actions";
 import { COMMENTS, EYE, HEART, LINK, REPOST } from "@consts/images";
@@ -6,8 +5,7 @@ import Links from "./links";
 
 const Footer = (props) => {
 
-  const { post } = props;
-  
+  const { post, handleComment } = props;
   return (
     <div className={styles.footer}>
       <div className={styles.actions}>
@@ -15,11 +13,13 @@ const Footer = (props) => {
           styles={styles} 
           icon={HEART} 
           text={post.post?.likes?.count} />
-        <Actions
+       <div onClick={() => handleComment({owner_id: post.post.owner_id, post_id: post.post.id})}> 
+         <Actions          
           styles={styles}
           icon={COMMENTS}
           text={post.post?.comments?.count}
         />
+        </div>
         <Actions
           styles={styles}
           icon={REPOST}
@@ -31,7 +31,7 @@ const Footer = (props) => {
           text={post.post?.views?.count} />
       </div>
       <div className={styles.links}>
-        <Links 
+        <Links
           styles={styles} 
           icon={LINK} 
           text="Page" 

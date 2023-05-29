@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  gap: .3em;
+}
+
+.actions {
+  display: flex;
+}
+
+.action {
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  gap: .3em;
+  border: 1px solid var(--border-cards-color);
+  width: fit-content;
+  padding: .5em;
+  border-radius: 1em;
+  transition: .3s ease-in;
+  user-select: none;
+}
+
+.icon {
+  width: 20px;
+}
+
+.links {
+  display: flex;
+  gap: .3em;
+}
+
+.action:hover {
+  cursor: pointer;
+  border: 1px solid var(--active-color);
+}
+
+.count {
+  color: var(--text-color-secondary);
+}
+
+@media (max-width: 800px) {
+  .footer {
+    gap: .3em;
+    justify-content: space-evenly;
+  }  
+}

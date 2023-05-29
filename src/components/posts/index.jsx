@@ -17,7 +17,7 @@ const Index = (props) => {
   const [ageOver, setAgeOver] = useState(undefined);
   const [ageLess, setAgeLess] = useState(undefined);
   const dispatch = useDispatch()
-  const handleClick = (props) => !comments ? dispatch(fetchPosts(props)) : dispatch(fetchComments(props))
+  const handleClick = (props) => dispatch(fetchPosts(props))
 
   return (
     <div className={styles.container}>
