@@ -1,5 +1,4 @@
 import Index from '@components/posts';
-import React from 'react';
 
 const index = () => {
   

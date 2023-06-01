@@ -1,10 +1,10 @@
-import Index from '@components/posts';
+import Index from '@components/comments';
 
 const index = () => {
   
   return (
     <div className='container'>
-      <Index comments={true}/>
+      <Index/>
     </div>
   );
 };

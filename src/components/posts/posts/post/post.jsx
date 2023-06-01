@@ -7,7 +7,7 @@ import Comments from './comments/comments';
 
 
 const Post = (props) => {
-  const {post,handleComment, comment} = props
+  const {post, handleComment, comment} = props
   const comments = comment.find(c => c.post_id == post.post.id)
   return (
     <div className={styles.container}>

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import styles from "@/styles/posts/posts/posts.module.css";
+import { useState } from "react";
+import styles from "@/styles/posts/posts.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import Post from "./post/post";
+import Post from "./posts/post/post";
 import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
 import { useScroll } from "@consts/hooks/scroll";
@@ -53,9 +53,9 @@ const Posts = (props) => {
     .slice(0, currentPage * postsPerPage);
 
 const dispatch = useDispatch()
-  const handleComment = (props) => {
-    dispatch(fetchComment(props))
-  }
+const handleComment = (props) => {
+  dispatch(fetchComment(props))
+}
   
   const comment = useSelector(state => state.comment.comment)
 

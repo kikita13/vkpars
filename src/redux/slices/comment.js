@@ -1,4 +1,4 @@
-import { useCode } from "@consts/slicedCode";
+import { useCodeComment } from "@consts/hooks/slicedCode";
 import { TOKEN } from "@consts/token";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import $ from "jquery";
@@ -20,7 +20,7 @@ export const fetchComment = createAsyncThunk(
       dataType: "jsonp",
       success: (data) => { 
         const number = data.response;
-        codeComm = useCode({number, interval, chunkSize, owner_id, post_id})
+        codeComm = useCodeComment({number, interval, chunkSize, owner_id, post_id})
       }
     });
 
