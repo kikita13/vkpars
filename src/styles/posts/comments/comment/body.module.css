@@ -20,3 +20,8 @@
   max-width: 100%;
   object-fit: contain;
 }
+
+.text {
+  overflow-wrap: anywhere;
+
+}

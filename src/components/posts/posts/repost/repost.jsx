@@ -9,8 +9,8 @@ const Repost = (props) => {
 
   return (
     <div className={styles.container}>
-      <Head post={post.repost}/>
-      <Body post={post.repost}/>
+      <Head post={post.copy_history[0]}/>
+      <Body post={post.copy_history[0]}/>
     </div>
   );
 };

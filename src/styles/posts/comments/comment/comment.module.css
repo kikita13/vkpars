@@ -1,13 +1,12 @@
 .container {
   display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  display: flex;
   border-bottom: 1px solid var(--border-cards-color);
 }
-
-.container:last-child {
-  
-  border-bottom: none;
-}
-
 
 .photo {
   width: 40px;
@@ -26,4 +25,11 @@
 .links {
   display: flex;
   flex-direction: column;
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  padding: .5em 0 .5em 2em;
 }

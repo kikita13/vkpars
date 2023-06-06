@@ -1,70 +1,54 @@
-import { FIELDS } from "../fields";
-
-export const useCodeComment = (props) => {
-  const {number, interval, chunkSize, owner_id, post_id} = props
-  const result = [];
-  const codeRes = [];
-  for (let i = 0; i < number; i += chunkSize * interval) {
-    const chunk = [];
-    for (let j = i; j < i + chunkSize * interval && j <= number; j += interval) {
-      chunk.push(`var comments = API.wall.getComments({"owner_id": '${owner_id}',"offset": ${j}, "post_id": '${post_id}', "count": 100,"extended":1, "fields": '${FIELDS.user}'}); allComments.push(comments);`
-      );
-    }
-    result.push(chunk);
+export const useCodePosts = (num,id,code) => {
+  const offsets = [];
+  const splitCode = code.split('|')
+  const interval = 100;
+  let count = 100;
+  const size = 24; 
+  for(let i = 0; i < num; i += interval) {
+    offsets.push(`${splitCode[0]}${i}${splitCode[1]}${i < num - interval ? count : num % count || 100}${splitCode[2]}${id}${splitCode[3]}`)
   }
-  for (let i = 0; i < result.length; i++) {
-    codeRes.push(result[i]);
+  let j = 0;
+  const result = []
+  while(result.flat().length < offsets.length) {
+    result.push(offsets.slice(j, j+size))
+    j += size;
   }
-  return codeRes;
+  return result
 }
 
-export const useCodeComments = (props) => {
-  const {number, interval, chunkSize, owner_id} = props
-  const result = [];
-  const codeRes = [];
-  for (let i = 0; i < number; i += chunkSize * interval) {
-    const chunk = [];
-    for (let j = i; j < i + chunkSize * interval && j <= number; j += interval) {
-      chunk.push(  `var posts = API.wall.get({"count":${interval},"owner_id":'${owner_id}', "offset":'${j}',"extended":1, "fields": '${FIELDS.user}'});
-      var i = 0;
-      var ids;
-      while(i <= posts.length){
-        if(posts[i].items.thread.count > 0){ids = ids + posts[i].id};
-        i = i + 1;
-      } 
-      return ids;`);
-    }
-    result.push(chunk);
+export const useCodeComments = (num,owner_id,post_id,code) => {
+  const offsets = [];
+  const splitCode = code.split('|')
+  const interval = 100;
+  let count = 100;
+  const size = 24; 
+  for(let i = 0; i < num; i += interval) {
+    offsets.push(`${splitCode[0]}${owner_id}${splitCode[1]}${post_id}${splitCode[2]}${i < num - interval ? count : num % count || 100}${splitCode[3]}${i}${splitCode[4]}`)
   }
-  for (let i = 0; i < result.length; i++) {
-    codeRes.push(result[i]);
+  let j = 0;
+  const result = []
+  while(result.flat().length < offsets.length) {
+    result.push(offsets.slice(j, j+size))
+    j += size;
   }
-  return codeRes;
-
+  return result
 }
 
-
-// var i = 0; 
-// var haveComments = []; 
-// var posts = API.wall.get({"owner_id":-108736036,"count": 100, "offset":0,"extended":1});
-// while(i < posts.items.length)
-// {
-//   if(posts.items[i].comments.count > 0)
-//   {haveComments.push({post_id: posts.items[i].id, owner_id: posts.items[i].owner_id });};
-//   i = i + 1;
-// };
-// var j = 0;
-// var c = 0;
-// var allComments = [];
-// var haveThread = [];
-// while(j < 24){
-//   var comments = API.wall.getComments({"owner_id":haveComments[j].owner_id,"count": 100, "offset":0,"extended":1, "post_id": haveComments[j].post_id});
-//   allComments.push(comments);
-//   while(c < comments.items.length) {
-//     if (comments.items[c].thread.count > 0){
-//       haveThread.push({comment_id: comments.items[c].id, post_id: haveComments[j].post_id, owner_id: haveComments[j].owner_id});
-//     };
-//   c = c + 1;};
-//   j = j + 1;
-// };
-// return {posts: posts, haveComments: haveComments, allComments: allComments, haveThread: haveThread};
+export const useCodeThreads = (num,owner_id,post_id,comment_id,code) => {
+  const offsets = [];
+  const splitCode = code.split('|')
+  console.log(splitCode);
+  const interval = 100;
+  let count = 100;
+  const size = 24; 
+  for(let i = 0; i < num; i += interval) {
+    offsets.push(`${splitCode[0]}${owner_id}${splitCode[1]}${post_id}${splitCode[2]}${i < num - interval ? count : num % count || 100}${splitCode[3]}${i}${splitCode[4]}${comment_id}${splitCode[5]}`)
+  }
+  let j = 0;
+  const result = []
+  while(result.flat().length < offsets.length) {
+    result.push(offsets.slice(j, j+size))
+    j += size;
+  }
+  return result
+}

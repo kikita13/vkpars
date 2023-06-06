@@ -16,40 +16,13 @@ const Posts = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 100;
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
-  const loadAllPage = () => setCurrentPage(info.length);
-  const info = posts?.items?.map((item) => {
-    const owner =
-      +item?.from_id < 0
-        ? posts.groups.find((group) => group.id == Math.abs(+item.owner_id))
-        : posts.profiles.find((profile) => profile.id == item.from_id);
-    const repost =
-      item.copy_history && +item?.copy_history[0]?.from_id < 0
-        ? posts.groups.find(
-            (group) => group.id == Math.abs(+item.copy_history[0].owner_id)
-          )
-        : posts.profiles.find(
-            (profile) =>
-              item.copy_history && profile.id == +item.copy_history[0].from_id
-          );
+  const loadAllPage = () => setCurrentPage(posts.length);
 
-    return {
-      post: item,
-      owner: owner,
-      repost:
-        item.copy_history && item.copy_history.length > 0
-          ? {
-              post: item.copy_history[0],
-              owner: repost,
-            }
-          : null,
-    };
-  });
-
-  const displayedPosts = info
-    ?.filter( post => keyword   ? post.post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
-    ?.filter( post => city      ? post.owner?.city?.title.toLowerCase() === city.toLowerCase() : true)
-    ?.filter( post => ageLess   ? useAges(post.owner?.bdate)            <= ageLess             : true)
-    ?.filter( post => ageOver   ? useAges(post.owner?.bdate)            >= ageOver             : true)
+  const displayedPosts = posts.posts
+    ?.filter( post => keyword   ? post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
+    ?.filter( post => city      ? post.user.city?.title.toLowerCase() === city.toLowerCase() : true)
+    ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
+    ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
     .slice(0, currentPage * postsPerPage);
 
 const dispatch = useDispatch()
@@ -77,7 +50,7 @@ const handleComment = (props) => {
       >
         <img src={ARROWUP} />
       </div>
-      {displayedPosts?.length < info?.length && (
+      {displayedPosts?.length < posts?.length && (
         <div className={styles.buttons}>
           <div className={styles.button} onClick={() => loadNextPage()}>
             Load More

@@ -1,46 +1,17 @@
 import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {VkApiHelper, DelayHelper, ResultMapperHelper} from "./helpers";
 import {REQUEST_PER_SECOND, VK_EXECUTE_CHUNK_SIZE, VK_GET_COUNT} from "./consts";
+import { postMapper } from "./comments/helpers/postMapper.helper";
+import { responsePosts } from "./comments/helpers/requestsDelay.helper";
 
 const updatePosts = createAction('updatePosts')
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props, thunkAPI) => {
   const { id, maxPosts } = props;
-  const codeChunks = [];
+  const arrayOfPosts = await responsePosts({id,maxPosts})
+  const posts = postMapper(arrayOfPosts)
 
-  for (let offset = 0; offset < maxPosts; offset += VK_GET_COUNT) {
-    const chunkIndex = Math.floor(offset / (
-      VK_GET_COUNT * VK_EXECUTE_CHUNK_SIZE
-    ));
-    const newCode = VkApiHelper.getApiWallCode(id, offset, maxPosts);
-
-    codeChunks[chunkIndex] = `${codeChunks[chunkIndex] ?? ''}${newCode}`;
-  }
-
-  const result = [];
-
-  try {
-    for (const codeChunk of codeChunks) {
-      const startTimestamp = (new Date()).getDate();
-      const response = await VkApiHelper.executeChunk(codeChunk, id);
-      const endTimestamp = (new Date()).getDate();
-
-      result.push(response);
-
-      thunkAPI.dispatch(updatePosts(ResultMapperHelper.mapResult(result)));
-
-      // Тут можно еще добавить немного милисекунд, чтобы наверняка не было больше секунды, хз
-      const timeToWait = 1000 / REQUEST_PER_SECOND - (endTimestamp - startTimestamp);
-
-      if (timeToWait > 0) {
-        await DelayHelper.delay(timeToWait);
-      }
-    }
-  } catch (error) {
-    throw new Error(error.message);
-  }
-
-  return null;
+  return {posts: posts.posts, account: posts.account, count: posts.count};
 });
 
 const initialState = {
@@ -60,15 +31,12 @@ const posts = createSlice({
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.status = "fulfilled";
+      state.posts = action.payload
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
       state.status = "error";
       state.error = action.error.message;
       state.posts = [];
-    });
-    builder.addCase(updatePosts, (state, action) => {
-      state.status = "fulfilled";
-      state.posts = action.payload;
     });
   },
 });

@@ -1,5 +1,5 @@
 import Menu from "@components/posts/menu/menu";
-import { fetchComments } from "@redux/slices/comments";
+import { fetchComments } from "@redux/slices/comments/comments";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from '@/styles/comments/index.module.css'

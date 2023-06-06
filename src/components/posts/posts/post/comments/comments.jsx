@@ -1,26 +1,23 @@
 import styles from '@/styles/posts/comments/comments.module.css'
-import { useEffect } from 'react';
 import Comment from './comment/comment';
 
 const Comments = (props) => {
-  const { post, comments } = props;
-  const comment = post.post.id === comments?.post_id && comments;
+
+  const { post, city, keyword, ageOver, ageLess } = props;
   
-  const info = comment.items?.map(item => {
-    const owner = item.from_id == 0 
-    ? {name: 'Profile is diactivated', photo_50: 'none', online:1} 
-    : item.from_id > 0
-    ? comment.profiles.find(acc => acc.id == item.from_id)
-    : comment.groups.find(acc => acc.id == Math.abs(item.from_id))
-    return {comment: item, owner: owner}
-  })
+
+  const displayedComments = post.comments.items
+  ?.filter( post => keyword   ? post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
+  ?.filter( post => city      ? post.user.city?.title.toLowerCase() === city.toLowerCase() : true)
+  ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
+  ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
+  
 
   return (
     <div className={styles.container}>
-      {info?.map((item, index) => <Comment 
+      {displayedComments?.map((comment, index) => <Comment keyword={keyword} city={city} ageOver={ageOver} ageLess={ageLess}
       key={index} 
-      comment={item.comment}
-      owner={item.owner}
+      comment={comment}
       />)}
     </div>
   );

@@ -1,3 +1,52 @@
 .container {
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+  gap: 1em;
+  flex-wrap: nowrap;
+}
+
+.buttons { 
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3em;
+  border: 1px solid var(--border-cards-color);
+  width: fit-content;
+  padding: .5em;
+  border-radius: 1em;
+  transition: .3s ease-in;
+  user-select: none;
+}
+
+.button:hover {
+  cursor: pointer;
+  border: 1px solid var(--active-color);
+}
+
+.scroll {
+  background-color: var(--border-cards-color);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: fixed;
+  right: 3em;
+  bottom: -3em;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.scrollActive {
+  bottom: 3em;
+  transition: .3s ease-in;
 }

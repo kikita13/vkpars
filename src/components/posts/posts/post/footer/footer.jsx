@@ -12,25 +12,23 @@ const Footer = (props) => {
         <Actions 
           styles={styles} 
           icon={HEART} 
-          text={post.post?.likes?.count} />
-       <div onClick={() => handleComment({owner_id: post.post.owner_id, post_id: post.post.id})}> 
+          text={post?.likes?.count} />
+       <div onClick={() => handleComment({owner_id: post.owner_id, post_id: post.id})}> 
           <Actions          
             styles={styles}
             icon={COMMENTS}
-            text={post.post?.comments?.count}
+            text={post?.comments?.count}
           />
         </div>
         <Actions
           styles={styles}
           icon={REPOST}
-          text={post.post?.reposts?.count}
+          text={post?.reposts?.count}
         />
-        <div onClick={() => handleComment({owner_id: post.post.owner_id, post_id: post.post.id, i: true})}>
           <Actions 
             styles={styles} 
             icon={EYE} 
-            text={post.post?.views?.count} />
-        </div>
+            text={post?.views?.count} />
       </div>
       <div className={styles.links}>
         <Links

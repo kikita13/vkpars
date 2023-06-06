@@ -4,7 +4,7 @@ import { usePrivate } from '@consts/hooks/private';
 
 const Head = (props) => {
 
-  const {owner} = props
+  const { owner } = props
 
   return (
     <div className={styles.container}>

@@ -1,5 +1,6 @@
 import styles from "@/styles/posts/comments/comment/body.module.css";
 import { useGetImage } from "@consts/hooks/attachments";
+import { useSplitText } from "@consts/hooks/splitText";
 
 const Body = (props) => {
   const { comment } = props;
@@ -15,7 +16,9 @@ const Body = (props) => {
           />
         ))}
       </div>
-      {comment.text}
+      <div className={styles.text}>
+        {useSplitText(comment.text)}
+      </div>
     </div>
   );
 };

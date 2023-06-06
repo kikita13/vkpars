@@ -7,14 +7,15 @@ import Comments from './comments/comments';
 
 
 const Post = (props) => {
-  const {post, handleComment, comment} = props
-  const comments = comment.find(c => c.post_id == post.post.id)
+  
+  const { post, hideComments, handleComment, city, keyword, ageOver, ageLess } = props
+  
   return (
     <div className={styles.container}>
       <Head   post={post}/>
       <Body   post={post}/>
       <Footer handleComment={handleComment} post={post}/>
-      {comments && <Comments post={post} comments={comments}/> }
+      {!hideComments && <Comments keyword={keyword} city={city} ageOver={ageOver} ageLess={ageLess} post={post}/> }
     </div>
   );
 };

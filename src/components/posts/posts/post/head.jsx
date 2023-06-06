@@ -9,20 +9,20 @@ const Head = (props) => {
   return (
     <div className={styles.container}>
       <img 
-        src={post.owner?.photo_50} 
+        src={post.user.photo_50 || 'https://vk.com/images/camera_200.png'} 
         className={styles.photo} />
       <div className={styles.info}>
         <div className={styles.name}>
-          {post.owner?.name
-            ? post.owner?.name
-            : `${post.owner?.first_name} ${post.owner?.last_name} `}
-        {usePrivate(post.owner)}
+          {post.user.name
+            ? post.user.name
+            : `${post.user.first_name} ${post.user.last_name} `}
+        {usePrivate(post.user)}
         </div>
         <div className={styles.date}>
-          {new Date(post.post?.date * 1000).toLocaleDateString()}
+          {new Date(post?.date * 1000).toLocaleDateString()}
         </div>
       </div>
-      {post.post?.is_pinned && <img src={PINNED} />}
+      {post?.is_pinned && <img src={PINNED} />}
     </div>
   );
 };

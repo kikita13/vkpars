@@ -10,8 +10,8 @@ const Links = (props) => {
       className={styles.action} 
       onClick={() => {
         text == 'Page' 
-        ? usePage(post.owner) 
-        : usePost(post.post)
+        ? usePage(post.user) 
+        : usePost(post)
       }}>
       <img className={styles.icon} src={icon}/>
       <div className={styles.count}>{text}</div>
