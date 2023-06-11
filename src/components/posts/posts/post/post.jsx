@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from './head';
 import Body from './body';
 import Footer from './footer/footer';
@@ -8,16 +8,16 @@ import Comments from './comments/comments';
 
 const Post = (props) => {
   
-  const { post, hideComments, handleComment, city, keyword, ageOver, ageLess } = props
+  const { post, handleComment, city, keyword, ageOver, ageLess } = props
   
-  return (
+  return ( post.comments.items.length > 0 && (
     <div className={styles.container}>
       <Head   post={post}/>
       <Body   post={post}/>
       <Footer handleComment={handleComment} post={post}/>
-      {!hideComments && <Comments keyword={keyword} city={city} ageOver={ageOver} ageLess={ageLess} post={post}/> }
+      <Comments keyword={keyword} city={city} ageOver={ageOver} ageLess={ageLess} post={post}/> 
     </div>
-  );
+  ))
 };
 
 export default Post;

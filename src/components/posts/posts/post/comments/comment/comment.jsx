@@ -14,10 +14,10 @@ const Comment = (props) => {
           <Body comment={comment} />
         </div>
       </div>
-      {comment.thread.items && (
+      {/* {comment.thread.items && (
         <div className={styles.thread}>
-          {comment.thread.items?.map((thread) => (
-            <div className={styles.container}>
+          {comment.thread.items?.map((thread,index) => (
+            <div key={index} className={styles.container}>
               <div className={styles.comment}>
                 <img className={styles.photo} src={thread.user.photo_50} />
                 <div className={styles.info}>
@@ -28,7 +28,7 @@ const Comment = (props) => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };

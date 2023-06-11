@@ -2,10 +2,10 @@ import styles from '@/styles/posts/menu/button.module.css'
 
 const Button = (props) => {
 
-  const {handleClick, id, maxPosts} = props
+  const {handleClick, id, maxPosts, keyword, city, ageOver, ageLess} = props
   
   return (
-    <div onClick={() => handleClick({id, maxPosts})} className={styles.button}>Start</div>
+    <div onClick={() => handleClick({id, maxPosts, keyword, city, ageOver, ageLess})} className={styles.button}>Start</div>
   );
 };
 

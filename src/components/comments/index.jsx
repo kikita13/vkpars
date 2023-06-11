@@ -8,13 +8,12 @@ import Comments from "./comments";
 const Index = () => {
   const [id, setId] = useState("");
   const [maxPosts, setMaxPosts] = useState("100");
-  const [keyword, setKeyword] = useState(undefined);
+  const [keyword, setKeyword] = useState('');
   const [city, setCity] = useState(undefined);
   const [ageOver, setAgeOver] = useState(undefined);
   const [ageLess, setAgeLess] = useState(undefined);
   const dispatch = useDispatch();
   const handleClick = (props) => dispatch(fetchComments(props));
-
   return (
     <div className={styles.container}>
       <Menu
@@ -27,6 +26,10 @@ const Index = () => {
         setMaxPosts={setMaxPosts}
         setKeyword={setKeyword}
         maxPosts={maxPosts}
+        keyword={keyword}
+        city={city}
+        ageOver={ageOver}
+        ageLess={ageLess}
       />
       <Comments 
         keyword={keyword}
