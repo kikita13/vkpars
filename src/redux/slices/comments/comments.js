@@ -12,6 +12,14 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
 
   const {id, maxPosts, keyword, city, ageOver, ageLess } = props  
   
+
+  const words = (text) => {
+    const result = text.toLowerCase().split(",").map(word => word.trim())
+    return result
+  }
+  const keywords = words(keyword)
+  const cities = words(city)
+
   const arrayOfPosts = await responsePosts({id,maxPosts})
   const posts = postMapper(arrayOfPosts)
 
@@ -22,8 +30,9 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
   const arrayOfComments = await responseComments(codesForComments);
 
   const comments = commentsMapper(arrayOfComments)
-  const comms = comments.comments?.filter( post => keyword   ? post.text.toLowerCase().includes(keyword.toLowerCase())     : true)
-  ?.filter( post => city      ? post.user.city?.title.toLowerCase() === city.toLowerCase()  : true)
+  const comms = comments.comments
+  ?.filter( post => keyword   ? keywords.some(word => post.text.toLowerCase().includes(word))     : true)
+  ?.filter( post => city      ? cities.some(word => post.user?.city?.title.toLowerCase().includes(word))  : true)
   ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
   ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
   posts.posts.map(post => {
