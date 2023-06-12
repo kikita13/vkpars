@@ -14,7 +14,7 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
   
 
   const words = (text) => {
-    const result = text.toLowerCase().split(",").map(word => word.trim())
+    const result = text?.toLowerCase().split(",").map(word => word.trim())
     return result
   }
   const keywords = words(keyword)
@@ -31,8 +31,8 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
 
   const comments = commentsMapper(arrayOfComments)
   const comms = comments.comments
-  ?.filter( post => keyword   ? keywords.some(word => post.text.toLowerCase().includes(word))     : true)
-  ?.filter( post => city      ? cities.some(word => post.user?.city?.title.toLowerCase().includes(word))  : true)
+  ?.filter( post => keyword   ? keywords.some(word => post.text?.toLowerCase().includes(word))     : true)
+  ?.filter( post => city      ? cities.some(word => post.user?.city?.title?.toLowerCase().includes(word))  : true)
   ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
   ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
   posts.posts.map(post => {
@@ -46,8 +46,9 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
   const arrayOfThreads = await responseThreads(codesForThreads)
   const threads = threadsMapper(arrayOfThreads.flat().flat())
 
-  const thrs = threads?.filter( post => keyword   ? post.text.toLowerCase().includes(keyword.toLowerCase())     : true)
-  ?.filter( post => city      ? post.user.city?.title.toLowerCase() === city.toLowerCase()  : true)
+  const thrs = threads
+  ?.filter( post => keyword   ? keywords.some(word => post?.text?.toLowerCase().includes(word))     : true)
+  ?.filter( post => city      ? cities.some(word => post.user?.city?.title?.toLowerCase().includes(word))  : true)
   ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
   ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
 
