@@ -13,15 +13,14 @@ const Posts = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 100;
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
-  const loadAllPage = () => setCurrentPage(posts.length);
+  const loadAllPage = () => setCurrentPage(posts.posts.length);
 
   const displayedPosts = posts.posts?.slice(0, currentPage * postsPerPage);
 
   const scrollPosition = useScroll();
-  const account = posts.account
   return (
     <div className={styles.container}>
-      {account && <Account  account={account} countPosts={posts.count} />}  
+      {posts.account && <Account  account={posts.account[0]} countPosts={posts.count} />}  
       {displayedPosts?.map((post, index) => (
         <Post key={index} post={post}/>
       ))}
@@ -35,7 +34,7 @@ const Posts = (props) => {
       >
         <img src={ARROWUP} />
       </div>
-      {displayedPosts?.length < posts?.length && (
+      {displayedPosts?.length < posts.posts?.length && (
         <div className={styles.buttons}>
           <div className={styles.button} onClick={() => loadNextPage()}>
             Load More

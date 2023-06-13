@@ -20,7 +20,7 @@ const Comments = (props) => {
 
   return (
     <div className={styles.container}>
-      {posts.account && <Account  account={posts.account} countPosts={posts.count} />}  
+      {posts.account && <Account  account={posts.account[0]} countPosts={posts.count} />}  
       {displayed?.map((post, index) => <Post  key={index} post={post}  keyword={keyword} city={city} ageOver={ageOver} ageLess={ageLess} />)}
       <div
         className={

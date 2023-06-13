@@ -3,7 +3,7 @@ import styles from '@/styles/users/index.module.css'
 import Menu from './menu/menu';
 import Users from './users';
 import { useDispatch } from 'react-redux';
-import { fetchFriends } from '@redux/slices/friends';
+import { fetchFriends } from '@redux/slices/friends/friends';
 import { fetchMembers } from '@redux/slices/members';
 
 const Index = () => {
@@ -19,8 +19,8 @@ const Index = () => {
   const handleClick = (props) => {
     const {id} = props
     id >= 0
-    ? dispatch(fetchFriends(id))
-    : dispatch(fetchMembers(Math.abs(+id)))
+    ? dispatch(fetchFriends({id, city,ageOver,ageLess,firstName,lastName,sex}))
+    : dispatch(fetchMembers({id:Math.abs(+id),city,ageOver,ageLess,firstName,lastName,sex}))
   }
   
   return (

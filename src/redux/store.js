@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { postsReducer } from "./slices/posts";
-import { friendsReducer } from "./slices/friends";
+import { friendsReducer } from "./slices/friends/friends";
 import { membersReducer } from "./slices/members";
 import { commentReducer } from "./slices/comment";
 import { commentsReducer } from "./slices/comments/comments";

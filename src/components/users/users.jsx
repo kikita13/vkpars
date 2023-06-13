@@ -6,26 +6,26 @@ import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
 import { useScroll } from "@consts/hooks/scroll";
 import Account from "@components/account/account";
+import { useState } from "react";
 
 const Users = (props) => {
 
-  const {firstName, lastName, ageOver, ageLess, city, sex} = props
   const users = useSelector(state => state.friends.friends.length !== 0 ? state.friends.friends : state.members.members)
   const scrollPosition = useScroll();
-  const account = users.account && users.account[0]
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 100;
+  const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
+  const loadAllPage = () => setCurrentPage(users.users.length);
+
+  const displayedUsers = users.users?.slice(0, currentPage * postsPerPage)
+
   return (
     <div className={styles.container}>
-      {account && <Account  account={account}  />}  
+      {users.account && <Account  account={users.account} />}  
 
     <div className={styles.items}>
-      {users?.items?.items
-      ?.filter( user => firstName ? user.first_name.toLowerCase()     == firstName.toLowerCase()  : true)
-      ?.filter( user => lastName  ? user.last_name.toLowerCase()      == lastName.toLowerCase()   : true)
-      ?.filter( user => ageOver   ? useAges(user?.bdate)              >= ageOver                  : true)
-      ?.filter( user => ageLess   ? useAges(user?.bdate)              <= ageLess                  : true)
-      ?.filter( user => city      ? user?.city?.title?.toLowerCase()  == city?.toLowerCase()      : true)
-      ?.filter( user => sex       ? useSex(user?.sex).toLowerCase()   == sex?.toLowerCase()       : true)      
-      ?.map((user, index) => (
+      {displayedUsers?.map((user, index) => (
         <User key={index} user={user}/>
       ))}
       <div
@@ -38,6 +38,16 @@ const Users = (props) => {
         <img src={ARROWUP} />
       </div>
     </div>
+    {displayedUsers?.length < users.users?.length && (
+      <div className={styles.buttons}>
+        <div className={styles.button} onClick={() => loadNextPage()}>
+          Load More
+        </div>
+        <div className={styles.button} onClick={() => loadAllPage()}>
+          Load All
+        </div>
+      </div>
+    )}
     </div>
   );
 };
