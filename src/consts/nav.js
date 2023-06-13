@@ -23,11 +23,5 @@ export const NAV = [
     id: 5,
     title: 'Comments',
     path: '/comments'
-  },
-  {
-    id: 6,
-    title: 'All info',
-    path: '/all-info'
-  }
-  
+  }  
 ] 

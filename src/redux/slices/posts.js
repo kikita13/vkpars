@@ -1,16 +1,19 @@
-import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {VkApiHelper, DelayHelper, ResultMapperHelper} from "./helpers";
-import {REQUEST_PER_SECOND, VK_EXECUTE_CHUNK_SIZE, VK_GET_COUNT} from "./consts";
+import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { postMapper } from "./comments/helpers/postMapper.helper";
 import { responsePosts } from "./comments/helpers/requestsDelay.helper";
+import { useListSplit } from "@consts/hooks/litsSplitter";
 
-const updatePosts = createAction('updatePosts')
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => {
 
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props, thunkAPI) => {
-  const { id, maxPosts } = props;
+  const { id, maxPosts, keyword, city, ageOver, ageLess } = props;
+
+  const keywords = useListSplit(keyword)
+  const cities = useListSplit(city)
+
+
   const arrayOfPosts = await responsePosts({id,maxPosts})
   const posts = postMapper(arrayOfPosts)
-
+  console.log(posts);
   return {posts: posts.posts, account: posts.account, count: posts.count};
 });
 
@@ -41,6 +44,5 @@ const posts = createSlice({
   },
 });
 
-export const {} = posts.actions;
 
 export const postsReducer = posts.reducer;

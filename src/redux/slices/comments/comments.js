@@ -7,18 +7,15 @@ import { commentsMapper } from "./helpers/commentsMapper.helper";
 import { threadRequests } from "./helpers/threadsReqSlicer.helper";
 import { threadsMapper } from "./helpers/threadsMapper.helper";
 import { responseThreads } from "./helpers/requestThreads";
+import { commentsFilter } from "./helpers/commentsFilter.helper";
+import { useListSplit } from "@consts/hooks/litsSplitter";
 
 export const fetchComments = createAsyncThunk("comments/fetchComments",async (props) => {
 
   const {id, maxPosts, keyword, city, ageOver, ageLess } = props  
   
-
-  const words = (text) => {
-    const result = text?.toLowerCase().split(",").map(word => word.trim())
-    return result
-  }
-  const keywords = words(keyword)
-  const cities = words(city)
+  const keywords = useListSplit(keyword)
+  const cities = useListSplit(city)
 
   const arrayOfPosts = await responsePosts({id,maxPosts})
   const posts = postMapper(arrayOfPosts)
@@ -30,15 +27,8 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
   const arrayOfComments = await responseComments(codesForComments);
 
   const comments = commentsMapper(arrayOfComments)
-  const comms = comments.comments
-  ?.filter( post => keyword   ? keywords.some(word => post.text?.toLowerCase().includes(word))     : true)
-  ?.filter( post => city      ? cities.some(word => post.user?.city?.title?.toLowerCase().includes(word))  : true)
-  ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
-  ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
-  posts.posts.map(post => {
-    post.comments.items = [];
-    post.comments.items.push(...comms.filter(comment => comment.post_id == post.id))
-  })
+  const comms = commentsFilter(comments.comments, keywords,ageLess,ageOver,cities, keyword,city)
+  posts.posts.map(post => { post.comments.items = []; post.comments.items.push(...comms.filter(comment => comment.post_id == post.id))})
   
   const countThreads = []
   comments.haveThreads.map(item => item.from_id !== 0 ? countThreads.push({count:item.thread.count, post_id: item.post_id, owner_id: item.owner_id, comment_id: item.id}) : true)
@@ -46,20 +36,9 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
   const arrayOfThreads = await responseThreads(codesForThreads)
   const threads = threadsMapper(arrayOfThreads.flat().flat())
 
-  const thrs = threads
-  ?.filter( post => keyword   ? keywords.some(word => post?.text?.toLowerCase().includes(word))     : true)
-  ?.filter( post => city      ? cities.some(word => post.user?.city?.title?.toLowerCase().includes(word))  : true)
-  ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
-  ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
+  const thrs = commentsFilter(threads, keywords,ageLess,ageOver,cities, keyword,city)
 
   posts.posts.map(post => post.comments.items.push(...thrs.filter(thread => thread.post_id == post.id)))
-
-
-
-
-
-
-
 
   return {count: posts.count,posts:posts.posts, account: posts.account};
 });
@@ -75,7 +54,6 @@ const initialState = {
 const comments = createSlice({
   name: "comments",
   initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchComments.pending, (state) => {
       state.comments = [];
@@ -92,11 +70,5 @@ const comments = createSlice({
   },
 }); 
 
-export const {} = comments.actions;
 
 export const commentsReducer = comments.reducer;
-
-
-
-
-
