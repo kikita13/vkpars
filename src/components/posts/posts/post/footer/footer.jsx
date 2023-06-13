@@ -5,7 +5,7 @@ import Links from "./links";
 
 const Footer = (props) => {
 
-  const { post, handleComment } = props;
+  const { post } = props;
   return (
     <div className={styles.footer}>
       <div className={styles.actions}>
@@ -13,7 +13,7 @@ const Footer = (props) => {
           styles={styles} 
           icon={HEART} 
           text={post?.likes?.count} />
-       <div onClick={() => handleComment({owner_id: post.owner_id, post_id: post.id})}> 
+       <div> 
           <Actions          
             styles={styles}
             icon={COMMENTS}

@@ -14,7 +14,11 @@ const Menu = (props) => {
     setMaxPosts, 
     handleClick,
     id,
-    maxPosts,keyword, city, ageOver, ageLess
+    maxPosts,
+    keyword, 
+    city, 
+    ageOver, 
+    ageLess
   } = props;
   
   return (
@@ -40,8 +44,8 @@ const Menu = (props) => {
       <Button 
         keyword={keyword}
         city={city}
-        ageOver={ageOver}
         ageLess={ageLess}
+        ageOver={ageOver}
         handleClick={handleClick}
         id={id}  
         maxPosts={maxPosts} />

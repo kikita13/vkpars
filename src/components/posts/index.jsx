@@ -19,6 +19,10 @@ const Index = () => {
   return (
     <div className={styles.container}>
       <Menu
+        keyword={keyword}
+        city={city}
+        ageLess={ageLess}
+        ageOver={ageOver}
         setId={setId}
         setCity={setCity}
         setAgeOver={setAgeOver}
@@ -29,12 +33,7 @@ const Index = () => {
         setKeyword={setKeyword}
         maxPosts={maxPosts}
         />
-      <Posts 
-        ageOver={ageOver}
-        ageLess={ageLess}
-        city={city}
-        keyword={keyword}
-      />
+      <Posts/>
     </div>
   );
 };

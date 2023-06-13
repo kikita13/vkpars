@@ -1,36 +1,21 @@
 import { useState } from "react";
 import styles from "@/styles/posts/posts.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Post from "./posts/post/post";
-import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
 import { useScroll } from "@consts/hooks/scroll";
 import Account from "@components/account/account";
-import { fetchComment } from "@redux/slices/comment";
 
 const Posts = (props) => {
   
-  const { city, keyword, ageOver, ageLess } = props;
-
   const posts = useSelector((state) => state.posts.posts);
+
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 100;
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(posts.length);
 
-  const displayedPosts = posts.posts
-    ?.filter( post => keyword   ? post.text.toLowerCase().includes(keyword.toLowerCase()) : true)
-    ?.filter( post => city      ? post.user.city?.title.toLowerCase() === city.toLowerCase() : true)
-    ?.filter( post => ageLess   ? useAges(post.user?.bdate)            <= ageLess             : true)
-    ?.filter( post => ageOver   ? useAges(post.user?.bdate)            >= ageOver             : true)
-    .slice(0, currentPage * postsPerPage);
-
-const dispatch = useDispatch()
-const handleComment = (props) => {
-  dispatch(fetchComment(props))
-}
-  
-  const comment = useSelector(state => state.comment.comment)
+  const displayedPosts = posts.posts?.slice(0, currentPage * postsPerPage);
 
   const scrollPosition = useScroll();
   const account = posts.account
@@ -38,7 +23,7 @@ const handleComment = (props) => {
     <div className={styles.container}>
       {account && <Account  account={account} countPosts={posts.count} />}  
       {displayedPosts?.map((post, index) => (
-        <Post key={index} post={post} comment={comment} handleComment={handleComment}/>
+        <Post key={index} post={post}/>
       ))}
       <div
         className={

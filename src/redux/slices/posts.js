@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { postMapper } from "./comments/helpers/postMapper.helper";
 import { responsePosts } from "./comments/helpers/requestsDelay.helper";
 import { useListSplit } from "@consts/hooks/litsSplitter";
+import { commentsFilter } from "./comments/helpers/commentsFilter.helper";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => {
 
@@ -13,8 +14,9 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
 
   const arrayOfPosts = await responsePosts({id,maxPosts})
   const posts = postMapper(arrayOfPosts)
-  console.log(posts);
-  return {posts: posts.posts, account: posts.account, count: posts.count};
+
+  const filteredPosts = commentsFilter(posts.posts, keywords, ageLess, ageOver, cities)
+  return {posts: filteredPosts, account: posts.account, count: posts.count};
 });
 
 const initialState = {
