@@ -1,8 +1,6 @@
 import styles from "@/styles/users/users/users.module.css";
 import { useSelector } from "react-redux";
 import User from "./user/user";
-import { useSex } from "@consts/hooks/sex";
-import { useAges } from "@consts/hooks/ages";
 import { ARROWUP } from "@consts/images";
 import { useScroll } from "@consts/hooks/scroll";
 import Account from "@components/account/account";

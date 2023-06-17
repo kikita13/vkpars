@@ -6,16 +6,17 @@ import { commentsFilter } from "./comments/helpers/commentsFilter.helper";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => {
 
-  const { id, maxPosts, keyword, city, ageOver, ageLess } = props;
+  const { id, maxPosts, keyword, city, ageOver, ageLess, firstName, lastName } = props;
 
   const keywords = useListSplit(keyword)
   const cities = useListSplit(city)
-
+  const firstNames = useListSplit(firstName)
+  const lastNames = useListSplit(lastName)
 
   const arrayOfPosts = await responsePosts({id,maxPosts})
   const posts = postMapper(arrayOfPosts)
 
-  const filteredPosts = commentsFilter(posts.posts, keywords, ageLess, ageOver, cities)
+  const filteredPosts = commentsFilter(posts.posts, keywords, ageLess, ageOver, cities, firstNames, lastNames)
   return {posts: filteredPosts, account: posts.account, count: posts.count};
 });
 

@@ -13,6 +13,8 @@ const Index = () => {
   const [city, setCity] = useState(undefined);
   const [ageOver, setAgeOver] = useState(undefined);
   const [ageLess, setAgeLess] = useState(undefined);
+  const [firstName, setFirstName] = useState(undefined);
+  const [lastName, setLastName] = useState(undefined);
   const dispatch = useDispatch()
   const handleClick = (props) => dispatch(fetchPosts(props))
 
@@ -23,6 +25,10 @@ const Index = () => {
         city={city}
         ageLess={ageLess}
         ageOver={ageOver}
+        firstName={firstName}
+        lastName={lastName}
+        setLastName={setLastName}
+        setFirstName={setFirstName}
         setId={setId}
         setCity={setCity}
         setAgeOver={setAgeOver}

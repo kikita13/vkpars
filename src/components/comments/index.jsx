@@ -12,24 +12,30 @@ const Index = () => {
   const [city, setCity] = useState(undefined);
   const [ageOver, setAgeOver] = useState(undefined);
   const [ageLess, setAgeLess] = useState(undefined);
+  const [firstName, setFirstName] = useState(undefined);
+  const [lastName, setLastName] = useState(undefined);
   const dispatch = useDispatch();
   const handleClick = (props) => dispatch(fetchComments(props));
   return (
     <div className={styles.container}>
       <Menu
-        setId={setId}
-        setCity={setCity}
-        setAgeOver={setAgeOver}
-        setAgeLess={setAgeLess}
-        handleClick={handleClick}
-        id={id}
-        setMaxPosts={setMaxPosts}
-        setKeyword={setKeyword}
-        maxPosts={maxPosts}
-        keyword={keyword}
-        city={city}
-        ageOver={ageOver}
-        ageLess={ageLess}
+         keyword={keyword}
+         city={city}
+         ageLess={ageLess}
+         ageOver={ageOver}
+         firstName={firstName}
+         lastName={lastName}
+         setLastName={setLastName}
+         setFirstName={setFirstName}
+         setId={setId}
+         setCity={setCity}
+         setAgeOver={setAgeOver}
+         setAgeLess={setAgeLess}
+         handleClick={handleClick}
+         id={id}
+         setMaxPosts={setMaxPosts}
+         setKeyword={setKeyword}
+         maxPosts={maxPosts}
       />
       <Comments 
         keyword={keyword}

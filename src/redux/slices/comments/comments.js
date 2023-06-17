@@ -12,10 +12,12 @@ import { useListSplit } from "@consts/hooks/litsSplitter";
 
 export const fetchComments = createAsyncThunk("comments/fetchComments",async (props) => {
 
-  const {id, maxPosts, keyword, city, ageOver, ageLess } = props  
-  
+  const {id, maxPosts, keyword, city, ageOver, ageLess, firstName, lastName } = props  
+  console.log(id, maxPosts, keyword, city, ageOver, ageLess, firstName, lastName );
   const keywords = useListSplit(keyword)
   const cities = useListSplit(city)
+  const firstNames = useListSplit(firstName)
+  const lastNames = useListSplit(lastName)
 
   const arrayOfPosts = await responsePosts({id,maxPosts})
   const posts = postMapper(arrayOfPosts)
@@ -27,7 +29,7 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
   const arrayOfComments = await responseComments(codesForComments);
 
   const comments = commentsMapper(arrayOfComments)
-  const comms = commentsFilter(comments.comments, keywords,ageLess,ageOver,cities, keyword,city)
+  const comms = commentsFilter(comments.comments, keywords,ageLess,ageOver,cities, firstNames, lastNames )
   posts.posts.map(post => { post.comments.items = []; post.comments.items.push(...comms.filter(comment => comment.post_id == post.id))})
   
   const countThreads = []
@@ -36,7 +38,7 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
   const arrayOfThreads = await responseThreads(codesForThreads)
   const threads = threadsMapper(arrayOfThreads.flat().flat())
 
-  const thrs = commentsFilter(threads, keywords,ageLess,ageOver,cities, keyword,city)
+  const thrs = commentsFilter(threads, keywords,ageLess,ageOver,cities, firstNames, lastNames )
 
   posts.posts.map(post => post.comments.items.push(...thrs.filter(thread => thread.post_id == post.id)))
 

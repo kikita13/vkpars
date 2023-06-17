@@ -4,7 +4,7 @@ import Item from './item';
 const Index = () => {
   return (
     <div className={styles.container}>
-      {HOMEPAGEITEMS.map(item => <Item item={item}/>)}
+      {HOMEPAGEITEMS.map((item, index) => <Item key={index} item={item}/>)}
     </div>
   );
 };
