@@ -18,8 +18,8 @@ export const fetchFriends = createAsyncThunk("friends/fetchFriends", async (prop
   const {account, countPosts} = await friendsInitRequest(id)
   account.counters.posts = countPosts
 
-  const codes = friendsRequests(account.counters.friends, id)
-  
+  const codes = friendsRequests(id > 0 ? account.counters.friends : account.members_count, id)
+
   const arrayOfFriends = await responseFriends(codes)
   
   const users = friendsMapper(arrayOfFriends)

@@ -33,6 +33,6 @@ export const responseFriends = async (code) => {
     } catch (error) {
       console.log(error);;
     }
-
+    console.log(allResponses);
     return allResponses
 }

@@ -4,7 +4,6 @@ import Menu from './menu/menu';
 import Users from './users';
 import { useDispatch } from 'react-redux';
 import { fetchFriends } from '@redux/slices/friends/friends';
-import { fetchMembers } from '@redux/slices/members';
 
 const Index = () => {
 
@@ -16,12 +15,7 @@ const Index = () => {
   const [ageLess, setAgeLess] = useState(undefined);
   const [sex, setSex] = useState(undefined);
   const dispatch = useDispatch()
-  const handleClick = (props) => {
-    const {id} = props
-    id >= 0
-    ? dispatch(fetchFriends({id, city,ageOver,ageLess,firstName,lastName,sex}))
-    : dispatch(fetchMembers({id:Math.abs(+id),city,ageOver,ageLess,firstName,lastName,sex}))
-  }
+  const handleClick = ({id}) => dispatch(fetchFriends({id, city,ageOver,ageLess,firstName,lastName,sex}))
   
   return (
     <div className={styles.container}>
