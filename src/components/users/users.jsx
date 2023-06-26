@@ -8,17 +8,17 @@ import { useState } from "react";
 
 const Users = (props) => {
 
-  const users = useSelector(state => state.friends.friends.length !== 0 ? state.friends.friends : state.members.members)
+  const {users, status} = useSelector(state => state.friends.users.length !== 0 ? state.friends : state.members)
   const scrollPosition = useScroll();
-
+  console.log(status);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 100;
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(users.users.length);
 
-  const displayedUsers = users.users?.slice(0, currentPage * postsPerPage)
+  const displayedUsers = users?.users?.slice(0, currentPage * postsPerPage)
 
-  return (
+  return status == 'fulfilled' ? (
     <div className={styles.container}>
       {users.account && <Account  account={users.account} />}  
 
@@ -47,7 +47,7 @@ const Users = (props) => {
       </div>
     )}
     </div>
-  );
+  ) : status;
 };
 
 export default Users;

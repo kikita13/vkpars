@@ -48,8 +48,8 @@ export const fetchComments = createAsyncThunk("comments/fetchComments",async (pr
 
 
 const initialState = {
-  comments: [],
-  status: "",
+  posts: [],
+  status: "waiting",
   error: "",
 };
 
@@ -58,12 +58,12 @@ const comments = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchComments.pending, (state) => {
-      state.comments = [];
+      state.posts = [];
       state.status = "pending";
     });
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.status = "fulfilled";
-      state.comments = action.payload;
+      state.posts = action.payload;
     });
     builder.addCase(fetchComments.rejected, (state, action) => {
       state.status = "error";

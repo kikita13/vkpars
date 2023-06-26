@@ -22,7 +22,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (props) => 
 
 const initialState = {
   posts: [],
-  status: "",
+  status: "waiting",
   error: "",
 };
 

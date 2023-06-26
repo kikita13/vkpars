@@ -31,8 +31,8 @@ export const fetchFriends = createAsyncThunk("friends/fetchFriends", async (prop
 })
 
 const initialState = {
-  friends: [],
-  status: '',
+  users: [],
+  status: 'waiting',
   error: ''
 };
 
@@ -48,7 +48,7 @@ const friends = createSlice({
     });
     builder.addCase(fetchFriends.fulfilled, (state, action) => {
       state.status = 'fulfilled'
-      state.friends = action.payload
+      state.users = action.payload
     });
     builder.addCase(fetchFriends.rejected, (state, action) => {
       state.status = 'error'

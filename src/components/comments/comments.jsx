@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const Comments = (props) => {
   
   const { keyword, city, ageOver, ageLess } = props
-  const posts = useSelector(state => state.comments.comments)
+  const {posts, status} = useSelector(state => state.comments)
 
   const scrollPosition = useScroll();
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,7 +18,7 @@ const Comments = (props) => {
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(posts.posts.length);
 
-  return (
+  return status == 'fulfilled' ? (
     <div className={styles.container}>
       {posts.account && <Account  account={posts.account[0]} countPosts={posts.count} />}  
       {displayed?.map((post, index) => <Post  key={index} post={post}  keyword={keyword} city={city} ageOver={ageOver} ageLess={ageLess} />)}
@@ -43,7 +43,7 @@ const Comments = (props) => {
         </div>
       )}
     </div>
-  );
+  ) : status;
 };
 
 export default Comments;

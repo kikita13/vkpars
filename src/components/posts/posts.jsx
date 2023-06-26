@@ -8,17 +8,17 @@ import Account from "@components/account/account";
 
 const Posts = (props) => {
   
-  const posts = useSelector((state) => state.posts.posts);
+  const {posts, status} = useSelector((state) => state.posts);
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 100;
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(posts.posts.length);
 
-  const displayedPosts = posts.posts?.slice(0, currentPage * postsPerPage);
+  const displayedPosts = posts?.posts?.slice(0, currentPage * postsPerPage);
 
   const scrollPosition = useScroll();
-  return (
+  return status == 'fulfilled' ? (
     <div className={styles.container}>
       {posts.account && <Account  account={posts.account[0]} countPosts={posts.count} />}  
       {displayedPosts?.map((post, index) => (
@@ -45,7 +45,7 @@ const Posts = (props) => {
         </div>
       )}
     </div>
-  );
+  ) : status;
 };
 
 export default Posts;
