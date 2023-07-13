@@ -66,7 +66,7 @@ const comments = createSlice({
       state.posts = action.payload;
     });
     builder.addCase(fetchComments.rejected, (state, action) => {
-      state.status = "error"+" action.error.message";
+      state.status = "error "+ action.error.message;
       state.error = action.error.message;
     });
   },
