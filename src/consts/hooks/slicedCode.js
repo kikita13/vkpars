@@ -57,7 +57,6 @@ export const useCodeComments = (num, owner_id, post_id, code) => {
 export const useCodeThreads = (num, owner_id, post_id, comment_id, code) => {
   const offsets = [];
   const splitCode = code.split("|");
-  console.log(splitCode);
   const interval = 100;
   const size = 24;
 
@@ -79,6 +78,6 @@ export const useCodeThreads = (num, owner_id, post_id, comment_id, code) => {
     result.push(offsets.slice(j, j + size));
     j += size;
   }
-  
+
   return result;
 };

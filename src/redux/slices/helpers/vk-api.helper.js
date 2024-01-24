@@ -27,8 +27,6 @@ export class VkApiHelper {
         dataType: "jsonp",
         method: "GET",
         success: (data) => {
-          console.log(data);
-
           return resolve(data.response);
         },
         error: (err) => {

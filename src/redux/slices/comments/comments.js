@@ -23,16 +23,7 @@ export const fetchComments = createAsyncThunk(
       firstName,
       lastName,
     } = props;
-    console.log(
-      id,
-      maxPosts,
-      keyword,
-      city,
-      ageOver,
-      ageLess,
-      firstName,
-      lastName
-    );
+ 
     const keywords = useListSplit(keyword);
     const cities = useListSplit(city);
     const firstNames = useListSplit(firstName);
