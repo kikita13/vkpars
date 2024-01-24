@@ -14,8 +14,10 @@ const Index = () => {
   const [ageLess, setAgeLess] = useState(undefined);
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
+  
   const dispatch = useDispatch();
   const handleClick = (props) => dispatch(fetchComments(props));
+
   return (
     <div className={styles.container}>
       <Menu

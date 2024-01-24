@@ -7,9 +7,10 @@ import { useScroll } from "@consts/hooks/scroll";
 import Account from "@components/account/account";
 
 const Posts = (props) => {
-  const { posts, status } = useSelector((state) => state.posts);
+  const { posts, status, error } = useSelector((state) => state.posts);
 
   const [currentPage, setCurrentPage] = useState(1);
+
   const postsPerPage = 100;
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(posts.posts.length);
@@ -51,7 +52,7 @@ const Posts = (props) => {
       )}
     </div>
   ) : (
-    status
+    console.error(error.stack)
   );
 };
 

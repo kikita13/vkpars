@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 const Comments = (props) => {
   const { keyword, city, ageOver, ageLess } = props;
 
-  const { posts, status } = useSelector((state) => state.comments);
+  const { posts, error, status } = useSelector((state) => state.comments);
   const [currentPage, setCurrentPage] = useState(1);
 
   const scrollPosition = useScroll();
@@ -61,7 +61,7 @@ const Comments = (props) => {
       )}
     </div>
   ) : (
-    status
+    <span className={styles.status}>{status}</span>
   );
 };
 

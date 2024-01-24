@@ -20,7 +20,7 @@ const Head = (props) => {
         </div>
         
         <div className={styles.date}>
-          {new Date(post?.date * 1000).toLocaleDateString()}
+          {new Date(post.date * 1000).toLocaleDateString()}
         </div>
       </div>
       {post?.is_pinned && <img src={PINNED} />}

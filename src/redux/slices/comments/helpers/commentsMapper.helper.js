@@ -2,16 +2,15 @@ import { blockedUser } from "./consts/blockedUser";
 
 export const commentsMapper = (props) => {
   const comms = props.flat().flat();
-  const items = [];
-  const groups = [];
-  const profiles = [];
-
-  comms.map((item) => {
-    if (item !== undefined) {
-      items.push(...item?.items);
-      groups.push(...item?.groups);
-      profiles.push(...item?.profiles);
-    }
+  
+  let items = [];
+  let groups = [];
+  let profiles = [];
+  
+  comms.forEach((item) => {
+    items = [...items, ...item.items];
+    groups = [...groups, ...item.groups];
+    profiles = [...profiles, ...item.profiles];
   });
 
   items.map((comment) => {

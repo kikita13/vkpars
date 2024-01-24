@@ -22,8 +22,9 @@ export const fetchPosts = createAsyncThunk(
     const cities = useListSplit(city);
     const firstNames = useListSplit(firstName);
     const lastNames = useListSplit(lastName);
+    let arrayOfPosts = null;
 
-    const arrayOfPosts = await responsePosts({ id, maxPosts });
+    arrayOfPosts = await responsePosts({ id, maxPosts });
     const posts = postMapper(arrayOfPosts);
 
     const filteredPosts = commentsFilter(
@@ -36,7 +37,6 @@ export const fetchPosts = createAsyncThunk(
       lastNames
     );
 
-  
     return { posts: filteredPosts, account: posts.account, count: posts.count };
   }
 );
@@ -53,8 +53,6 @@ const posts = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.pending, (state) => {
       state.status = "pending";
-
-      state.posts = [];
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.status = "fulfilled";
@@ -64,7 +62,7 @@ const posts = createSlice({
     builder.addCase(fetchPosts.rejected, (state, action) => {
       state.status = "error";
 
-      state.error = action.error.message;
+      state.error = action.error;
       
       state.posts = [];
     });

@@ -1,16 +1,14 @@
 import { blockedUser } from "./consts/blockedUser";
 
 export const threadsMapper = (props) => {
-  const items = [];
-  const groups = [];
-  const profiles = [];
+  let items = [];
+  let groups = [];
+  let profiles = [];
 
   props.map((item) => {
-    if (item !== undefined) {
-      items.push(...item?.items);
-      groups.push(...item?.groups);
-      profiles.push(...item?.profiles);
-    }
+      items = [...items, ...item.items];
+      groups = [...groups, ...item.groups];
+      profiles = [...profiles, ...item.profiles];
   });
 
   items.map((comment) => {

@@ -31,7 +31,7 @@ export const fetchComments = createAsyncThunk(
     const arrayOfPosts = await responsePosts({ id, maxPosts });
     const posts = postMapper(arrayOfPosts);
     const countsComms = [];
-
+    
     posts.haveComments.forEach((post) => {
       countsComms.push({
         count: post.comments.count,
@@ -39,10 +39,10 @@ export const fetchComments = createAsyncThunk(
         owner_id: post.owner_id,
       });
     });
-
+    
     const codesForComments = commentsRequests(countsComms);
     const arrayOfComments = await responseComments(codesForComments);
-
+    
     const comments = commentsMapper(arrayOfComments);
 
     const comms = commentsFilter(
@@ -120,9 +120,9 @@ const comments = createSlice({
       state.posts = action.payload;
     });
     builder.addCase(fetchComments.rejected, (state, action) => {
-      state.status = "error " + action.error.message;
+      state.status = "error ";
 
-      state.error = action.error.message;
+      state.error = action.error;
     });
   },
 });
