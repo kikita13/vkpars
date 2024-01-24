@@ -52,7 +52,7 @@ const Posts = (props) => {
       )}
     </div>
   ) : (
-    console.error(error.stack)
+    <span className={styles.status}>{status}</span>
   );
 };
 

@@ -53,7 +53,7 @@ const Users = (props) => {
       )}
     </div>
   ) : (
-    status
+    <span className={styles.status}>{status}</span>
   );
 };
 
