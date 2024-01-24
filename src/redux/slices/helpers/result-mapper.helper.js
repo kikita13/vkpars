@@ -10,7 +10,12 @@ export class ResultMapperHelper {
 
         return merged;
       },
-      { count: 0, profiles: [], items: [], groups: [] }
+      {
+        count: 0,
+        profiles: [],
+        items: [],
+        groups: [],
+      }
     );
   }
 }

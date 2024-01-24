@@ -14,6 +14,7 @@ const Index = () => {
   const [ageLess, setAgeLess] = useState(undefined);
   const [sex, setSex] = useState(undefined);
   const dispatch = useDispatch();
+  
   const handleClick = ({ id }) =>
     dispatch(
       fetchFriends({ id, city, ageOver, ageLess, firstName, lastName, sex })
@@ -32,6 +33,7 @@ const Index = () => {
         handleClick={handleClick}
         id={id}
       />
+
       <Users
         firstName={firstName}
         lastName={lastName}

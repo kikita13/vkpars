@@ -3,7 +3,9 @@ export const postMapper = (props) => {
   const groups = [];
   const profiles = [];
   const account = [];
+
   let count;
+
   props.map((item) => {
     items.push(...item.items);
     groups.push(...item.groups);
@@ -11,6 +13,7 @@ export const postMapper = (props) => {
     account.push(...item.account);
     count = item.count;
   });
+
   items.map((post) => {
     post.user =
       post.from_id > 0
@@ -34,5 +37,6 @@ export const postMapper = (props) => {
   });
 
   const haveComments = items.filter((post) => post.comments.count > 0);
+  
   return { posts: items, haveComments, account: { ...account }, count };
 };

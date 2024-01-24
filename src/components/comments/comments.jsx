@@ -8,12 +8,16 @@ import { useSelector } from "react-redux";
 
 const Comments = (props) => {
   const { keyword, city, ageOver, ageLess } = props;
+
   const { posts, status } = useSelector((state) => state.comments);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const scrollPosition = useScroll();
-  const [currentPage, setCurrentPage] = useState(1);
+
   const postsPerPage = 100;
+
   const displayed = posts?.posts?.slice(0, currentPage * postsPerPage);
+
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(posts.posts.length);
 
@@ -22,6 +26,7 @@ const Comments = (props) => {
       {posts.account && (
         <Account account={posts.account[0]} countPosts={posts.count} />
       )}
+
       {displayed?.map((post, index) => (
         <Post
           key={index}
@@ -32,6 +37,7 @@ const Comments = (props) => {
           ageLess={ageLess}
         />
       ))}
+
       <div
         className={
           scrollPosition >= 2000
@@ -42,6 +48,7 @@ const Comments = (props) => {
       >
         <img src={ARROWUP} />
       </div>
+      
       {displayed?.length < posts.posts?.length && (
         <div className={styles.buttons}>
           <div className={styles.button} onClick={() => loadNextPage()}>

@@ -2,6 +2,7 @@ import { TOKEN } from "@consts/token";
 import $ from "jquery";
 
 const allResponses = [];
+
 export const responseFriends = async (code) => {
   const executeRequests = code.map((chunk, index) => {
     return new Promise((resolve, reject) => {
@@ -20,6 +21,7 @@ export const responseFriends = async (code) => {
           },
           error: (error) => {
             console.log(error);
+
             reject(error);
           },
         });
@@ -29,10 +31,11 @@ export const responseFriends = async (code) => {
 
   try {
     const responses = await Promise.all(executeRequests);
+
     allResponses.push(...responses);
   } catch (error) {
     console.log(error);
   }
-  console.log(allResponses);
+
   return allResponses;
 };

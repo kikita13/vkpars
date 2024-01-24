@@ -6,6 +6,7 @@ const Item = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>{item.title}</div>
+      
       <div className={styles.text}>{item.text}</div>
     </div>
   );

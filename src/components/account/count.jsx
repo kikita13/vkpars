@@ -6,6 +6,7 @@ const Count = (props) => {
   return count ? (
     <div className={styles.container}>
       <div className={styles.count}>{count}</div>
+      
       <div className={styles.title}>{title}</div>
     </div>
   ) : (

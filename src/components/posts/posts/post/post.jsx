@@ -11,8 +11,11 @@ const Post = (props) => {
     (post.comments.items && post.comments.items.length > 0 && (
       <div className={styles.container}>
         <Head post={post} />
+
         <Body post={post} />
+
         <Footer post={post} />
+
         <Comments
           keyword={keyword}
           city={city}
@@ -25,8 +28,11 @@ const Post = (props) => {
     (!post.comments.items && (
       <div className={styles.container}>
         <Head post={post} />
+
         <Body post={post} />
+
         <Footer post={post} />
+        
         <Comments
           keyword={keyword}
           city={city}

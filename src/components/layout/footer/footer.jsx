@@ -8,6 +8,7 @@ const Footer = () => {
       {FOOTER.map((item) => (
         <Link key={item.id} href={item.path} className={styles.item}>
           <img className={styles.icon} src={item.icon} />
+          
           <div>{item.title}</div>
         </Link>
       ))}

@@ -37,11 +37,10 @@ export const fetchComments = createAsyncThunk(
     const cities = useListSplit(city);
     const firstNames = useListSplit(firstName);
     const lastNames = useListSplit(lastName);
-
     const arrayOfPosts = await responsePosts({ id, maxPosts });
     const posts = postMapper(arrayOfPosts);
-
     const countsComms = [];
+
     posts.haveComments.forEach((post) => {
       countsComms.push({
         count: post.comments.count,
@@ -54,6 +53,7 @@ export const fetchComments = createAsyncThunk(
     const arrayOfComments = await responseComments(codesForComments);
 
     const comments = commentsMapper(arrayOfComments);
+
     const comms = commentsFilter(
       comments.comments,
       keywords,
@@ -63,6 +63,7 @@ export const fetchComments = createAsyncThunk(
       firstNames,
       lastNames
     );
+
     posts.posts.map((post) => {
       post.comments.items = [];
       post.comments.items.push(
@@ -71,6 +72,7 @@ export const fetchComments = createAsyncThunk(
     });
 
     const countThreads = [];
+
     comments.haveThreads.map((item) =>
       item.from_id !== 0
         ? countThreads.push({
@@ -81,6 +83,7 @@ export const fetchComments = createAsyncThunk(
           })
         : true
     );
+
     const codesForThreads = threadRequests(countThreads);
     const arrayOfThreads = await responseThreads(codesForThreads);
     const threads = threadsMapper(arrayOfThreads.flat().flat());
@@ -117,14 +120,17 @@ const comments = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchComments.pending, (state) => {
       state.posts = [];
+
       state.status = "pending";
     });
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.status = "fulfilled";
+
       state.posts = action.payload;
     });
     builder.addCase(fetchComments.rejected, (state, action) => {
       state.status = "error " + action.error.message;
+
       state.error = action.error.message;
     });
   },

@@ -5,8 +5,9 @@ export const commentRequestsSlicer = (comms) => {
   const max = comms.length;
   const result = [];
   const chunkSize = 24;
-  const interval = 100;
+
   let i = 0;
+
   while (i < max) {
     result.push(comms.slice(i, i + chunkSize));
     i += chunkSize || max % chunkSize;
@@ -32,7 +33,10 @@ export const commentsRequests = (countsComms) => {
       );
     }
   }
+
   codesForComments = codesForComments.flat().flat();
+
   const requestsForComments = commentRequestsSlicer(codesForComments);
+  
   return requestsForComments;
 };

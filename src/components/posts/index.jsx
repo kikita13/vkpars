@@ -14,7 +14,9 @@ const Index = () => {
   const [ageLess, setAgeLess] = useState(undefined);
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
+
   const dispatch = useDispatch();
+
   const handleClick = (props) => dispatch(fetchPosts(props));
 
   return (
@@ -38,6 +40,7 @@ const Index = () => {
         setKeyword={setKeyword}
         maxPosts={maxPosts}
       />
+      
       <Posts />
     </div>
   );

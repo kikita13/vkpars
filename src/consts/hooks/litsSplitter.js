@@ -3,5 +3,6 @@ export const useListSplit = (text) => {
     ?.toLowerCase()
     .split(",")
     .map((word) => word.trim());
+    
   return result;
 };

@@ -9,21 +9,18 @@ export class VkApiHelper {
       $.ajax({
         url: "https://api.vk.com/method/execute?",
         data: {
-          code: `var account;
-if (${id} < 0) {
-  account = API.groups.getById({"group_id": '${-id}', "fields": '${
-            FIELDS.group
-          }'});
-} else {
-  account = API.users.get({"user_ids": '${id}', "fields": '${FIELDS.user}'});
-};
-var profiles = [];
-var items = [];
-var groups = [];
-
-${code}
-
-return { count: response.count, items: items, profiles: profiles, groups: groups, account: account };`,
+          code: `
+            var account;
+            if (${id} < 0) {
+              account = API.groups.getById({"group_id": '${-id}', "fields": '${FIELDS.group}'});
+            } else {
+              account = API.users.get({"user_ids": '${id}', "fields": '${FIELDS.user}'});
+              };
+            var profiles = [];
+            var items = [];
+            var groups = [];
+            ${code}
+            return { count: response.count, items: items, profiles: profiles, groups: groups, account: account };`,
           access_token: TOKEN,
           v: "5.131",
         },
@@ -44,12 +41,10 @@ return { count: response.count, items: items, profiles: profiles, groups: groups
   }
 
   static getApiWallCode(id, offset, maxCount) {
-    return `var response = API.wall.get({"owner_id": '${id}', "count": ${Math.min(
-      maxCount - offset,
-      VK_GET_COUNT
-    )},"offset": ${offset},"extended": '1',"fields": '${FIELDS.user}'});
-items = items + response.items;
-profiles = profiles + response.profiles;
-groups = groups + response.groups;`;
+    return `
+      var response = API.wall.get({"owner_id": '${id}', "count": ${Math.min(maxCount - offset,VK_GET_COUNT)},"offset": ${offset},"extended": '1',"fields": '${FIELDS.user}'});
+      items = items + response.items;
+      profiles = profiles + response.profiles;
+      groups = groups + response.groups;`;
   }
 }

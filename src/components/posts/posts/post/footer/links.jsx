@@ -18,6 +18,7 @@ const Links = (props) => {
       }}
     >
       <img className={styles.icon} src={icon} />
+      
       <div className={styles.count}>{text}</div>
     </div>
   );

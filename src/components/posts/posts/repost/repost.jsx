@@ -9,6 +9,7 @@ const Repost = (props) => {
   return (
     <div className={styles.container}>
       <Head post={post.copy_history[0]} />
+      
       <Body post={post.copy_history[0]} />
     </div>
   );

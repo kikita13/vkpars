@@ -8,6 +8,7 @@ const Footer = (props) => {
   return (
     <div className={styles.container} onClick={() => usePage(user)}>
       <img src={LINK} />
+      
       <div className={styles.text}>Page</div>
     </div>
   );

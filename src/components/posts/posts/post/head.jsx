@@ -18,6 +18,7 @@ const Head = (props) => {
             : `${post.user.first_name} ${post.user.last_name} `}
           {usePrivate(post.user)}
         </div>
+        
         <div className={styles.date}>
           {new Date(post?.date * 1000).toLocaleDateString()}
         </div>

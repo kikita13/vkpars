@@ -9,6 +9,7 @@ const Head = (props) => {
   return (
     <div className={styles.container}>
       <img className={styles.photo} src={user.photo_50} />
+      
       <div className={styles.info}>
         <div
           className={styles.name}

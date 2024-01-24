@@ -35,6 +35,8 @@ export const fetchPosts = createAsyncThunk(
       firstNames,
       lastNames
     );
+
+  
     return { posts: filteredPosts, account: posts.account, count: posts.count };
   }
 );
@@ -51,15 +53,19 @@ const posts = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.pending, (state) => {
       state.status = "pending";
+
       state.posts = [];
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.status = "fulfilled";
+
       state.posts = action.payload;
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
       state.status = "error";
+
       state.error = action.error.message;
+      
       state.posts = [];
     });
   },

@@ -38,5 +38,6 @@ export const commentsFilter = (
           )
         : true
     );
+    
   return filteredArr;
 };

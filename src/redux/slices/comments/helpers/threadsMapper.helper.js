@@ -4,6 +4,7 @@ export const threadsMapper = (props) => {
   const items = [];
   const groups = [];
   const profiles = [];
+
   props.map((item) => {
     if (item !== undefined) {
       items.push(...item?.items);
@@ -11,6 +12,7 @@ export const threadsMapper = (props) => {
       profiles.push(...item?.profiles);
     }
   });
+
   items.map((comment) => {
     comment.user =
       comment.from_id > 0
@@ -23,5 +25,6 @@ export const threadsMapper = (props) => {
         : groups.find((group) => group.id == Math.abs(comment.owner_id)) ||
           blockedUser;
   });
+  
   return items;
 };

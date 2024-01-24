@@ -4,6 +4,7 @@ import { TOKEN } from "@consts/token";
 import $ from "jquery";
 
 const allResponses = [];
+
 export const responsePosts = async (props) => {
   const codeForAccount = `var account; if (${
     props.id
@@ -17,6 +18,7 @@ export const responsePosts = async (props) => {
     props.id,
     `var response = API.wall.get({"offset": '|',"count":'|',"owner_id": '|',"extended": '1',"fields": '${FIELDS.user}'}); items = items + response.items; profiles = profiles + response.profiles; groups = groups + response.groups;`
   );
+
   const executeRequests = codesForPosts.map((chunk, index) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -45,6 +47,7 @@ export const responsePosts = async (props) => {
 
   try {
     const responses = await Promise.all(executeRequests);
+    
     allResponses.push(...responses);
   } catch (error) {
     console.log(error);

@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 export const useResize = () => {
@@ -11,6 +12,7 @@ export const useResize = () => {
       };
 
       setWidth(window.innerWidth);
+      
       window.addEventListener("resize", handleResize);
 
       return () => {
@@ -18,5 +20,6 @@ export const useResize = () => {
       };
     }
   }, []);
+
   return width;
 };

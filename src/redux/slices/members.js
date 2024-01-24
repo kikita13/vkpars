@@ -8,7 +8,6 @@ export const fetchMembers = createAsyncThunk(
   async (props) => {
     return new Promise((resolve, reject) => {
       const code = `
-      
       var length = API.groups.getMembers({
         "group_id": '${props}',
         "count": 1
@@ -69,10 +68,12 @@ const members = createSlice({
     });
     builder.addCase(fetchMembers.fulfilled, (state, action) => {
       state.status = "fulfilled";
+
       state.users = action.payload;
     });
     builder.addCase(fetchMembers.rejected, (state, action) => {
       state.status = "error";
+
       state.error = action.error.message;
     });
   },

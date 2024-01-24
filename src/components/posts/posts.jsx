@@ -17,14 +17,17 @@ const Posts = (props) => {
   const displayedPosts = posts?.posts?.slice(0, currentPage * postsPerPage);
 
   const scrollPosition = useScroll();
+
   return status == "fulfilled" ? (
     <div className={styles.container}>
       {posts.account && (
         <Account account={posts.account[0]} countPosts={posts.count} />
       )}
+
       {displayedPosts?.map((post, index) => (
         <Post key={index} post={post} />
       ))}
+
       <div
         className={
           scrollPosition >= 2000
@@ -35,6 +38,7 @@ const Posts = (props) => {
       >
         <img src={ARROWUP} />
       </div>
+      
       {displayedPosts?.length < posts.posts?.length && (
         <div className={styles.buttons}>
           <div className={styles.button} onClick={() => loadNextPage()}>

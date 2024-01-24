@@ -8,7 +8,9 @@ const Layout = ({ children }) => {
   return (
     <div className="container">
       {useResize() >= 650 ? <Nav /> : <Drawer />}
+
       {children}
+      
       <Footer />
     </div>
   );

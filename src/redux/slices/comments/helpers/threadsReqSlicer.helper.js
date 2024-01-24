@@ -5,12 +5,13 @@ export const threadRequestsSlicer = (threads) => {
   const max = threads.length;
   const result = [];
   const chunkSize = 20;
-  const interval = 100;
+
   let i = 0;
   while (i < max) {
     result.push(threads.slice(i, i + chunkSize));
     i += chunkSize || max % chunkSize;
   }
+
   return result;
 };
 
@@ -33,7 +34,10 @@ export const threadRequests = (countThreads) => {
       );
     }
   }
+
   codesForThreads = codesForThreads.flat().flat();
+
   const requestsForThreads = threadRequestsSlicer(codesForThreads);
+  
   return requestsForThreads;
 };

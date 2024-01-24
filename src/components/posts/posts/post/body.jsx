@@ -9,6 +9,7 @@ const Body = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.text}>{useSplitText(post?.text)}</div>
+
       <div className={styles.attachments}>
         {post?.attachments?.map((attachment, index) => (
           <img
@@ -18,6 +19,7 @@ const Body = (props) => {
           />
         ))}
       </div>
+      
       {post.copy_history && <Repost post={post} />}
     </div>
   );

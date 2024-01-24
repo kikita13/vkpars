@@ -1,5 +1,6 @@
 export const friendsMapper = (array) => {
   const items = [];
+  
   array
     .flat()
     .flat()

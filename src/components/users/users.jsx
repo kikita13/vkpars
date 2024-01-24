@@ -10,13 +10,13 @@ const Users = (props) => {
   const { users, status } = useSelector((state) =>
     state.friends.users.length !== 0 ? state.friends : state.members
   );
-  const scrollPosition = useScroll();
-  console.log(status);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 100;
+
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(users.users.length);
 
+  const scrollPosition = useScroll();
+  const postsPerPage = 100;
   const displayedUsers = users?.users?.slice(0, currentPage * postsPerPage);
 
   return status == "fulfilled" ? (
@@ -27,6 +27,7 @@ const Users = (props) => {
         {displayedUsers?.map((user, index) => (
           <User key={index} user={user} />
         ))}
+
         <div
           className={
             scrollPosition >= 2000
@@ -38,11 +39,13 @@ const Users = (props) => {
           <img src={ARROWUP} />
         </div>
       </div>
+
       {displayedUsers?.length < users.users?.length && (
         <div className={styles.buttons}>
           <div className={styles.button} onClick={() => loadNextPage()}>
             Load More
           </div>
+          
           <div className={styles.button} onClick={() => loadAllPage()}>
             Load All
           </div>

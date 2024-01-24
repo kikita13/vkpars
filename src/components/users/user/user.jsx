@@ -9,7 +9,9 @@ const User = (props) => {
   return (
     <div className={styles.container}>
       <Head user={user} />
+
       <Body user={user} />
+      
       <Footer user={user} />
     </div>
   );

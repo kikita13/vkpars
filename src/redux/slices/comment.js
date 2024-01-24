@@ -7,9 +7,12 @@ export const fetchComment = createAsyncThunk(
   "comment/fetchComment",
   async (props) => {
     const { owner_id, post_id } = props;
+
     const interval = 100;
     const chunkSize = 10;
+
     let codeComm;
+
     await $.ajax({
       url: "https://api.vk.com/method/execute?",
       data: {
@@ -45,13 +48,22 @@ export const fetchComment = createAsyncThunk(
     const mergedObject = comments.response.reduce(
       (merged, current) => {
         merged.count = current.count;
+
         merged.profiles.push(...current.profiles);
         merged.items.push(...current.items);
         merged.groups.push(...current.groups);
+
         return merged;
       },
-      { count: 0, profiles: [], items: [], groups: [], post_id: post_id }
+      { 
+        count: 0, 
+        profiles: [], 
+        items: [], 
+        groups: [], 
+        post_id: post_id 
+      }
     );
+
     return mergedObject;
   }
 );
@@ -72,10 +84,12 @@ const comment = createSlice({
     });
     builder.addCase(fetchComment.fulfilled, (state, action) => {
       state.status = "fulfilled";
+
       state.comment = [...state.comment, action.payload];
     });
     builder.addCase(fetchComment.rejected, (state, action) => {
       state.status = "error";
+      
       state.error = action.error.message;
     });
   },

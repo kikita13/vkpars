@@ -17,6 +17,7 @@ const Body = (props) => {
             />
           ))}
       </div>
+      
       <div className={styles.text}>{useSplitText(comment.text)}</div>
     </div>
   );

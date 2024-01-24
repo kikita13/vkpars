@@ -14,10 +14,10 @@ const Drawer = () => {
         className={styles.icon}
         src={NAVDRAWER}
       />
+
       <div className={styles.text}>VK Parser</div>
-      <div
-        className={isOpen ? `${styles.drawer} ${styles.active}` : styles.drawer}
-      >
+
+      <div className={isOpen ? `${styles.drawer} ${styles.active}` : styles.drawer}>
         {NAV.map((item) => (
           <Link
             onClick={() =>

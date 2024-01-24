@@ -38,6 +38,8 @@ export const friendsRequests = (count, id) => {
     }
   }
   codesForFriends = codesForFriends.flat().flat();
+
   const requestsForComments = friendsRequestsSlicer(codesForFriends);
+  
   return requestsForComments;
 };

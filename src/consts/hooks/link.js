@@ -1,4 +1,5 @@
 const openLink = (url) => window.open(url, "_blank");
+
 export const usePost = (data) => {
   openLink(`https://vk.com/wall${data.owner_id}_${data.id}`);
 };

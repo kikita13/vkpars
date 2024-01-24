@@ -33,5 +33,6 @@ export const usersFilter = (
     ?.filter((user) =>
       sex ? useSex(user?.sex).toLowerCase() == sex?.toLowerCase() : true
     );
+    
   return filtered;
 };

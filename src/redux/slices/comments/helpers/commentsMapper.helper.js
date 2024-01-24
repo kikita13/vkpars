@@ -5,6 +5,7 @@ export const commentsMapper = (props) => {
   const items = [];
   const groups = [];
   const profiles = [];
+
   comms.map((item) => {
     if (item !== undefined) {
       items.push(...item?.items);
@@ -12,6 +13,7 @@ export const commentsMapper = (props) => {
       profiles.push(...item?.profiles);
     }
   });
+
   items.map((comment) => {
     comment.user =
       comment.from_id > 0
@@ -26,5 +28,6 @@ export const commentsMapper = (props) => {
   });
 
   const haveThreads = items.filter((comm) => comm.thread.count > 0);
+  
   return { comments: items, haveThreads };
 };

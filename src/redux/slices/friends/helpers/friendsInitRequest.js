@@ -25,5 +25,6 @@ export const friendsInitRequest = async (props) => {
     success: (data) => data.response,
     error: (error) => new Error(error.msg),
   });
+  
   return result.response;
 };
