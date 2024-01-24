@@ -18,22 +18,30 @@ export const fetchComment = createAsyncThunk(
         v: "5.131",
       },
       dataType: "jsonp",
-      success: (data) => { 
+      success: (data) => {
         const number = data.response;
-        codeComm = useCodeComment({number, interval, chunkSize, owner_id, post_id})
-      }
+        codeComm = useCodeComment({
+          number,
+          interval,
+          chunkSize,
+          owner_id,
+          post_id,
+        });
+      },
     });
 
-    const comments = await $.ajax ({
+    const comments = await $.ajax({
       url: "https://api.vk.com/method/execute?",
       data: {
-        code: `var allComments = []; ${codeComm.flat().join('')}; return allComments;`,
+        code: `var allComments = []; ${codeComm
+          .flat()
+          .join("")}; return allComments;`,
         access_token: TOKEN,
         v: "5.131",
       },
       dataType: "jsonp",
       method: "GET",
-    })
+    });
     const mergedObject = comments.response.reduce(
       (merged, current) => {
         merged.count = current.count;
@@ -44,7 +52,8 @@ export const fetchComment = createAsyncThunk(
       },
       { count: 0, profiles: [], items: [], groups: [], post_id: post_id }
     );
-    return mergedObject;}
+    return mergedObject;
+  }
 );
 
 const initialState = {
@@ -63,7 +72,7 @@ const comment = createSlice({
     });
     builder.addCase(fetchComment.fulfilled, (state, action) => {
       state.status = "fulfilled";
-      state.comment = [...state.comment,action.payload];
+      state.comment = [...state.comment, action.payload];
     });
     builder.addCase(fetchComment.rejected, (state, action) => {
       state.status = "error";

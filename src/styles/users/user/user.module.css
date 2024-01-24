@@ -1,8 +1,8 @@
 .container {
   border: 1px solid var(--border-cards-color);
-  padding: .8em;
+  padding: 0.8em;
   border-radius: 1em;
-  gap: .8em;
+  gap: 0.8em;
   display: flex;
   flex-direction: column;
 }

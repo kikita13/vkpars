@@ -7,14 +7,14 @@
   border-radius: 1em;
   gap: 1em;
 }
-.container:first-child div{
+.container:first-child div {
   font-size: 20px;
 }
 
 .title {
   margin: auto;
   text-transform: uppercase;
-  letter-spacing: .3em;
+  letter-spacing: 0.3em;
   color: var(--active-color);
   font-size: 25px;
 }

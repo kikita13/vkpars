@@ -1,20 +1,19 @@
 .container {
   display: flex;
   align-items: center;
-  gap: .8em;
+  gap: 0.8em;
   position: relative;
 }
 
 .info {
- flex-grow: 1;
+  flex-grow: 1;
 }
- 
+
 .photo {
   border-radius: 50%;
   height: 40px;
 }
 
 .name {
-  color: var(--text-color-headers)
+  color: var(--text-color-headers);
 }
-

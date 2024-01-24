@@ -12,11 +12,11 @@ export const HOMEPAGEITEMS = [
   {
     id: 3,
     title: "Users",
-    text: "The Users tab will allow you to gather all the subscribers of a group or friends of a user, and filter them based on certain criteria."
+    text: "The Users tab will allow you to gather all the subscribers of a group or friends of a user, and filter them based on certain criteria.",
   },
   {
     id: 4,
     title: "Comments",
-    text: "The Comments tab retrieves not only the posts from the wall but also the comments on those posts. Filtering is performed based on the comments themselves, rather than the posts."
-  }
+    text: "The Comments tab retrieves not only the posts from the wall but also the comments on those posts. Filtering is performed based on the comments themselves, rather than the posts.",
+  },
 ];

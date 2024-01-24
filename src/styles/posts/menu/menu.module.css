@@ -2,16 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .5em;
+  gap: 0.5em;
   background-color: var(--bgcolor-secondary);
   border-radius: 0 2em 2em 0;
   padding: 1em;
   height: 100%;
 }
 
-@media (max-width:500px) {
-  .container{
+@media (max-width: 500px) {
+  .container {
     border-radius: 0 0 2em 2em;
   }
-  
 }

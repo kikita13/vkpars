@@ -34,5 +34,5 @@ export const testForTypeAttachment = (attachment) => {
 };
 
 export const useGetImage = (attachment) => {
- return testForTypeAttachment(attachment);
+  return testForTypeAttachment(attachment);
 };

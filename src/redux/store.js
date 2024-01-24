@@ -6,11 +6,11 @@ import { commentReducer } from "./slices/comment";
 import { commentsReducer } from "./slices/comments/comments";
 
 export const store = configureStore({
-    reducer: {
-      posts: postsReducer,
-      friends: friendsReducer,
-      members: membersReducer,
-      comment: commentReducer,
-      comments: commentsReducer
-    }
+  reducer: {
+    posts: postsReducer,
+    friends: friendsReducer,
+    members: membersReducer,
+    comment: commentReducer,
+    comments: commentsReducer,
+  },
 });

@@ -1,7 +1,7 @@
 .container {
-display: flex;
-align-items: center;
-gap: .8em;
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
 }
 
 .photo {
@@ -10,11 +10,11 @@ gap: .8em;
 }
 
 .name {
-  color: var(--text-color-headers)
+  color: var(--text-color-headers);
 }
 
 .date {
-  color: var(--text-color-secondary)
+  color: var(--text-color-secondary);
 }
 
 .tooltip {
@@ -26,19 +26,19 @@ gap: .8em;
   transform-origin: right;
   transform: scaleX(0);
   position: absolute;
-  content: '';
+  content: "";
   left: -760%;
   top: -50%;
   border-radius: 1em;
   padding: 1em;
   background-color: var(--border-cards-color);
-  transition: .2s ease-in;
+  transition: 0.2s ease-in;
   opacity: 0;
 }
 
 .tooltipText::after {
   position: absolute;
-  content: ' ';
+  content: " ";
   left: 100%;
   top: 40%;
   border-width: 5px;
@@ -46,7 +46,7 @@ gap: .8em;
   border-color: transparent transparent transparent var(--border-cards-color);
 }
 
-.tooltip:hover  .tooltipText {
+.tooltip:hover .tooltipText {
   opacity: 1;
   transform: scaleX(1);
 }

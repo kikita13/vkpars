@@ -1,12 +1,11 @@
 import Index from "@components/users";
 
 const index = () => {
-
   return (
     <div className="container">
-      <Index/>
+      <Index />
     </div>
-  )
+  );
 };
 
 export default index;

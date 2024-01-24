@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  gap: .3em;
+  gap: 0.3em;
 }
 
 .actions {
@@ -12,12 +12,12 @@
   height: fit-content;
   align-items: center;
   justify-content: center;
-  gap: .3em;
+  gap: 0.3em;
   border: 1px solid var(--border-cards-color);
   width: fit-content;
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 1em;
-  transition: .3s ease-in;
+  transition: 0.3s ease-in;
   user-select: none;
 }
 
@@ -27,7 +27,7 @@
 
 .links {
   display: flex;
-  gap: .3em;
+  gap: 0.3em;
 }
 
 .action:hover {
@@ -41,7 +41,7 @@
 
 @media (max-width: 800px) {
   .footer {
-    gap: .3em;
+    gap: 0.3em;
     justify-content: space-evenly;
-  }  
+  }
 }

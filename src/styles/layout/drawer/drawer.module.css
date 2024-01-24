@@ -21,13 +21,13 @@
   left: 0;
   padding: 1em;
   border-radius: 0 1em 1em 0;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
-.icon{
+.icon {
   height: 35px;
   border-radius: 50%;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .icon:hover {
@@ -39,10 +39,10 @@
 }
 
 .item {
-  padding: .8em;
+  padding: 0.8em;
   border-radius: 1em;
   border: 1px solid var(--border-cards-color);
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .item:first-child {

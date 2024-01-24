@@ -8,17 +8,16 @@ const Body = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.attachments}>
-        {comment.attachments && comment.attachments?.map((attachment, index) => (
-          <img
-            key={index}
-            className={styles.attachment}
-            src={useGetImage(attachment)}
-          />
-        ))}
+        {comment.attachments &&
+          comment.attachments?.map((attachment, index) => (
+            <img
+              key={index}
+              className={styles.attachment}
+              src={useGetImage(attachment)}
+            />
+          ))}
       </div>
-      <div className={styles.text}>
-        {useSplitText(comment.text)}
-      </div>
+      <div className={styles.text}>{useSplitText(comment.text)}</div>
     </div>
   );
 };

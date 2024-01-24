@@ -6,7 +6,6 @@
   padding: 0 1em 0 1em;
 }
 
-.input:focus-visible{
+.input:focus-visible {
   outline: none;
 }
-

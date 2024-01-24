@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { fetchPosts } from "@redux/slices/posts";
 
 const Index = () => {
-  
   const [id, setId] = useState("");
   const [maxPosts, setMaxPosts] = useState("100");
   const [keyword, setKeyword] = useState(undefined);
@@ -15,8 +14,8 @@ const Index = () => {
   const [ageLess, setAgeLess] = useState(undefined);
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
-  const dispatch = useDispatch()
-  const handleClick = (props) => dispatch(fetchPosts(props))
+  const dispatch = useDispatch();
+  const handleClick = (props) => dispatch(fetchPosts(props));
 
   return (
     <div className={styles.container}>
@@ -38,8 +37,8 @@ const Index = () => {
         setMaxPosts={setMaxPosts}
         setKeyword={setKeyword}
         maxPosts={maxPosts}
-        />
-      <Posts/>
+      />
+      <Posts />
     </div>
   );
 };

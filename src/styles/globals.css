@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 #__next {
   display: flex;
@@ -14,7 +14,7 @@ a {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: var(--text-color-primary);
   font-size: 13px;
 }
@@ -39,11 +39,11 @@ body {
 }
 
 .date {
-  color: var(--text-color-secondary)
+  color: var(--text-color-secondary);
 }
 
 .online {
-  color: var(--active-color)
+  color: var(--active-color);
 }
 
 :root {

@@ -7,15 +7,15 @@
   min-height: none;
   display: flex;
   flex-wrap: wrap;
-  gap: .4em;
+  gap: 0.4em;
   justify-content: center;
   align-items: center;
   max-width: 100%;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .attachment {
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   max-height: 150px;
   max-width: 100%;
   object-fit: contain;
@@ -23,5 +23,4 @@
 
 .text {
   overflow-wrap: anywhere;
-
 }

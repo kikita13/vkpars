@@ -14,7 +14,14 @@ const Comment = (props) => {
         <div className={styles.info}>
           <Head owner={comment.user} />
           <Body comment={comment} />
-          <div className={styles.link}><Links comment={comment} styles={styles} icon={LINK}text='Comment'/></div>
+          <div className={styles.link}>
+            <Links
+              comment={comment}
+              styles={styles}
+              icon={LINK}
+              text="Comment"
+            />
+          </div>
         </div>
       </div>
       {/* {comment.thread.items && (

@@ -1,10 +1,9 @@
-import Index from '@components/posts';
+import Index from "@components/posts";
 
 const index = () => {
-  
   return (
-    <div className='container'>
-      <Index/>
+    <div className="container">
+      <Index />
     </div>
   );
 };

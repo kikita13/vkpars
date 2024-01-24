@@ -1,15 +1,14 @@
-import styles from '@/styles/comments/comments.module.css'
-import Account from '@components/account/account';
-import Post from '@components/posts/posts/post/post';
-import { useScroll } from '@consts/hooks/scroll';
-import { ARROWUP } from '@consts/images';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import styles from "@/styles/comments/comments.module.css";
+import Account from "@components/account/account";
+import Post from "@components/posts/posts/post/post";
+import { useScroll } from "@consts/hooks/scroll";
+import { ARROWUP } from "@consts/images";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Comments = (props) => {
-  
-  const { keyword, city, ageOver, ageLess } = props
-  const {posts, status} = useSelector(state => state.comments)
+  const { keyword, city, ageOver, ageLess } = props;
+  const { posts, status } = useSelector((state) => state.comments);
 
   const scrollPosition = useScroll();
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,10 +17,21 @@ const Comments = (props) => {
   const loadNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const loadAllPage = () => setCurrentPage(posts.posts.length);
 
-  return status == 'fulfilled' ? (
+  return status == "fulfilled" ? (
     <div className={styles.container}>
-      {posts.account && <Account  account={posts.account[0]} countPosts={posts.count} />}  
-      {displayed?.map((post, index) => <Post  key={index} post={post}  keyword={keyword} city={city} ageOver={ageOver} ageLess={ageLess} />)}
+      {posts.account && (
+        <Account account={posts.account[0]} countPosts={posts.count} />
+      )}
+      {displayed?.map((post, index) => (
+        <Post
+          key={index}
+          post={post}
+          keyword={keyword}
+          city={city}
+          ageOver={ageOver}
+          ageLess={ageLess}
+        />
+      ))}
       <div
         className={
           scrollPosition >= 2000
@@ -43,7 +53,9 @@ const Comments = (props) => {
         </div>
       )}
     </div>
-  ) : status;
+  ) : (
+    status
+  );
 };
 
 export default Comments;

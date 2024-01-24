@@ -1,8 +1,8 @@
 .button {
   border: 1px solid var(--border-cards-color);
   width: fit-content;
-  padding: .8em;
-  transition: .3s ease;
+  padding: 0.8em;
+  transition: 0.3s ease;
   border-radius: 1em;
 }
 

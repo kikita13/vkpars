@@ -1,8 +1,7 @@
-import styles from '@/styles/homePage/item.module.css';
+import styles from "@/styles/homePage/item.module.css";
 
 const Item = (props) => {
-  
-  const {item} = props
+  const { item } = props;
 
   return (
     <div className={styles.container}>

@@ -7,8 +7,7 @@ import { useScroll } from "@consts/hooks/scroll";
 import Account from "@components/account/account";
 
 const Posts = (props) => {
-  
-  const {posts, status} = useSelector((state) => state.posts);
+  const { posts, status } = useSelector((state) => state.posts);
 
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 100;
@@ -18,11 +17,13 @@ const Posts = (props) => {
   const displayedPosts = posts?.posts?.slice(0, currentPage * postsPerPage);
 
   const scrollPosition = useScroll();
-  return status == 'fulfilled' ? (
+  return status == "fulfilled" ? (
     <div className={styles.container}>
-      {posts.account && <Account  account={posts.account[0]} countPosts={posts.count} />}  
+      {posts.account && (
+        <Account account={posts.account[0]} countPosts={posts.count} />
+      )}
       {displayedPosts?.map((post, index) => (
-        <Post key={index} post={post}/>
+        <Post key={index} post={post} />
       ))}
       <div
         className={
@@ -45,7 +46,9 @@ const Posts = (props) => {
         </div>
       )}
     </div>
-  ) : status;
+  ) : (
+    status
+  );
 };
 
 export default Posts;

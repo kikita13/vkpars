@@ -4,5 +4,5 @@ export const useAges = (bdate) => {
   const diffInMilliseconds = currentDate - userBday;
   const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25;
   const diffInYears = Math.floor(diffInMilliseconds / millisecondsPerYear);
-  return diffInYears
+  return diffInYears;
 };
